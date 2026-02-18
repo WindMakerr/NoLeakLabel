@@ -1,115 +1,419 @@
 :root {
-    --purple: #8B00FF;
-    --purple-hover: #9f2bff;
-    --dark-bg: #1a1a1a;
-    --darker-bg: #0d0d0d;
+    --neon-purple: #8B00FF;
+    --neon-pink: #FF00FF;
+    --neon-blue: #00FFFF;
+    --neon-green: #00FF9D;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #050505;
+    --card-bg: #111111;
+    --text-primary: #f0f0f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--dark-bg);
-    color: #f0f0f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-primary);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
-.bg-black {
-    background-color: #000 !important;
+/* ===== АНИМИРОВАННЫЙ ФОН ===== */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
 }
 
-.text-purple {
-    color: var(--purple) !important;
+/* ===== ПРЕЛОАДЕР ===== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+.spinner {
+    width: 70px;
+    height: 70px;
+    border: 4px solid transparent;
+    border-top-color: var(--neon-purple);
+    border-right-color: var(--neon-blue);
+    border-bottom-color: var(--neon-pink);
+    border-left-color: var(--neon-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite, glow 1.5s ease-in-out infinite alternate;
+    box-shadow: 0 0 30px var(--neon-purple);
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+@keyframes glow {
+    from { box-shadow: 0 0 10px var(--neon-purple); }
+    to { box-shadow: 0 0 40px var(--neon-blue); }
 }
 
-.border-purple {
-    border-color: var(--purple) !important;
+/* ===== НЕОНОВЫЙ ТЕКСТ ===== */
+.neon-text {
+    text-shadow: 
+        0 0 5px var(--neon-purple),
+        0 0 10px var(--neon-purple),
+        0 0 20px var(--neon-purple),
+        0 0 40px var(--neon-blue);
+    animation: flicker 4s infinite alternate;
+}
+@keyframes flicker {
+    0% { opacity: 1; text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); }
+    25% { opacity: 0.9; text-shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--neon-pink), 0 0 32px var(--neon-purple); }
+    50% { opacity: 1; text-shadow: 0 0 5px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 30px var(--neon-purple); }
+    75% { opacity: 0.95; text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 40px var(--neon-blue); }
+    100% { opacity: 1; text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); }
 }
 
-.btn-purple {
-    background-color: var(--purple);
-    color: white;
-    border: none;
-    transition: all 0.3s;
+/* ===== АНИМИРОВАННЫЕ КАРТОЧКИ 3D ===== */
+.card-3d {
+    background: var(--card-bg);
+    border: 1px solid rgba(139, 0, 255, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+.card-3d::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue), var(--neon-pink), var(--neon-green));
+    border-radius: 22px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+}
+@keyframes borderGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+.card-3d:hover::before {
+    opacity: 0.5;
+}
+.card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg) scale(1.03);
+    border-color: transparent;
+    box-shadow: 0 0 50px rgba(139, 0, 255, 0.6);
 }
 
-.btn-purple:hover {
-    background-color: var(--purple-hover);
-    transform: scale(1.05);
-    box-shadow: 0 0 15px var(--purple);
-}
-
-.btn-outline-purple {
-    background-color: transparent;
-    color: var(--purple);
-    border: 1px solid var(--purple);
-    transition: all 0.3s;
-}
-
-.btn-outline-purple:hover {
-    background-color: var(--purple);
-    color: white;
-    transform: scale(1.05);
-}
-
-.navbar-nav .nav-link.active {
-    color: var(--purple) !important;
+/* ===== НЕОНОВЫЕ КНОПКИ ===== */
+.btn-neon {
+    position: relative;
+    background: transparent;
+    color: var(--neon-purple);
+    border: 2px solid var(--neon-purple);
+    padding: 12px 35px;
+    font-size: 1.1rem;
     font-weight: bold;
-}
-
-.navbar-nav .nav-link:hover {
-    color: var(--purple-hover) !important;
-}
-
-.card {
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-width: 2px;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(139, 0, 255, 0.3);
-}
-
-.product-img {
-    transition: transform 0.3s, filter 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-radius: 50px;
     cursor: pointer;
-}
-
-.product-img:hover {
-    transform: scale(1.02);
-    filter: drop-shadow(0 0 10px var(--purple));
-}
-
-#cartCount {
-    transition: all 0.2s;
-}
-
-.nav-tabs .nav-link.active {
-    background-color: var(--purple) !important;
-    color: white !important;
-    border-color: var(--purple) !important;
-}
-
-.nav-tabs .nav-link:not(.active) {
-    background-color: #000 !important;
-    color: #ccc !important;
-    border-color: #333 !important;
-}
-
-.nav-tabs .nav-link:not(.active):hover {
-    border-color: var(--purple) !important;
-    color: var(--purple) !important;
-}
-
-.form-control:focus, .form-select:focus {
-    border-color: var(--purple);
-    box-shadow: 0 0 0 0.25rem rgba(139, 0, 255, 0.25);
-}
-
-.catalog-item {
+    overflow: hidden;
     transition: all 0.3s;
+    z-index: 1;
+    text-decoration: none;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(139, 0, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(139, 0, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(139, 0, 255, 0); }
+}
+.btn-neon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(139,0,255,0.5) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+.btn-neon:hover {
+    color: #fff;
+    background: var(--neon-purple);
+    box-shadow: 0 0 30px var(--neon-purple);
+    border-color: transparent;
+    animation: none;
+}
+.btn-neon:active::before {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+    transition: 0s;
 }
 
-@media (max-width: 768px) {
-    .display-4 {
-        font-size: 2.5rem;
+.btn-neon-outline {
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+}
+.btn-neon-outline:hover {
+    background: var(--neon-blue);
+    box-shadow: 0 0 30px var(--neon-blue);
+    color: #000;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.navbar {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(139, 0, 255, 0.3);
+    padding: 15px 0;
+    animation: slideDown 1s ease;
+}
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 3s infinite;
+}
+@keyframes shine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.nav-link {
+    color: #fff !important;
+    margin: 0 15px;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.3s;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+    transition: width 0.3s;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+.nav-link:hover {
+    color: var(--neon-purple) !important;
+}
+
+/* ===== СОЦИАЛЬНЫЕ ИКОНКИ ===== */
+.social-icon {
+    font-size: 2rem;
+    color: #fff;
+    transition: all 0.3s;
+    margin: 0 10px;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+.social-icon:hover {
+    color: var(--neon-purple);
+    filter: drop-shadow(0 0 10px var(--neon-purple));
+    transform: scale(1.2) rotate(5deg);
+    animation: none;
+}
+
+/* ===== КАРТОЧКИ ТОВАРОВ ===== */
+.product-card {
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 0, 255, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s;
+    height: 100%;
+    animation: fadeInUp 1s ease;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.product-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: var(--neon-purple);
+    box-shadow: 0 20px 50px rgba(139, 0, 255, 0.5);
+}
+.product-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
+.product-body {
+    padding: 20px;
+}
+
+/* ===== ФОРМЫ ===== */
+.neon-input {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(139, 0, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    padding: 12px;
+    transition: all 0.3s;
+    width: 100%;
+}
+.neon-input:focus {
+    outline: none;
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 20px rgba(139, 0, 255, 0.5);
+    background: rgba(0, 0, 0, 0.9);
+    animation: inputPulse 1s infinite;
+}
+@keyframes inputPulse {
+    0% { box-shadow: 0 0 5px var(--neon-purple); }
+    50% { box-shadow: 0 0 20px var(--neon-purple); }
+    100% { box-shadow: 0 0 5px var(--neon-purple); }
+}
+
+/* ===== ПАРАЛЛАКС ===== */
+.parallax-section {
+    position: relative;
+    overflow: hidden;
+}
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M0 0 L100 100 M100 0 L0 100" stroke="%238B00FF" stroke-width="0.5"/><circle cx="50" cy="50" r="20" fill="none" stroke="%2300FFFF" stroke-width="0.5"/></svg>');
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* ===== КОРЗИНА ===== */
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--neon-purple);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: badgePulse 2s infinite;
+}
+@keyframes badgePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* ===== ЗАГОЛОВКИ ===== */
+h1, h2, h3 {
+    position: relative;
+    display: inline-block;
+}
+h1::after, h2::after, h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+    animation: underlineGlow 3s linear infinite;
+}
+@keyframes underlineGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* ===== ТАБЫ ===== */
+.nav-tabs .nav-link {
+    position: relative;
+    overflow: hidden;
+}
+.nav-tabs .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 0, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+.nav-tabs .nav-link:hover::before {
+    left: 100%;
+}
+
+/* ===== АНИМАЦИИ ДЛЯ AOS ===== */
+[data-aos] {
+    pointer-events: none;
+}
+[data-aos].aos-animate {
+    pointer-events: auto;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .btn-neon { padding: 8px 20px; font-size: 0.9rem; }
 }
