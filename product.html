@@ -3,18 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dota 2 ESP Hack Ultimate - Suspender</title>
+    <title>Suspender | Dota 2 ESP Hack Ultimate</title>
+    
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Hover.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark text-light">
 
-    <!-- Навигация (та же) -->
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top animate__animated animate__fadeInDown">
+        <div class="container">
+            <a class="navbar-brand hvr-pulse-grow" href="index.html">
+                <img src="https://masterpiecer-images.s3.yandex.net/8f89d3528d4e11eea99abadf81d486ab:upscaled" 
+                     alt="Logo" width="50" height="50" class="d-inline-block align-text-top rounded-circle rotating-logo">
+                <span class="ms-2 fw-bold text-gradient">Suspender</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="index.html">
+                            <i class="bi bi-house-door me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="contacts.html">
+                            <i class="bi bi-envelope me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <button class="btn btn-outline-purple position-relative hvr-buzz" id="cartBtn">
+                        <i class="bi bi-cart3"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger animate__animated animate__pulse animate__infinite" 
+                              id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container mt-4">
-        <!-- Хлебные крошки -->
+    <!-- Хлебные крошки -->
+    <section class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html" class="text-purple">Главная</a></li>
@@ -22,105 +69,313 @@
                 <li class="breadcrumb-item active text-light" aria-current="page">Dota 2 ESP Hack Ultimate</li>
             </ol>
         </nav>
+    </section>
 
+    <!-- Товар -->
+    <section class="container py-4">
         <div class="row g-4">
-            <div class="col-md-6" data-aos="fade-right">
-                <div class="card bg-black border-purple p-3">
-                    <img src="https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13" alt="ESP Hack" class="img-fluid rounded-3 product-img">
-                    <p class="text-center text-muted mt-2"><em>Нажмите на изображение для увеличения</em></p>
+            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="product-image-wrapper">
+                    <img src="https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13" 
+                         alt="Dota 2 ESP Hack Ultimate" class="img-fluid rounded-4 product-image hvr-grow">
                 </div>
+                <p class="text-center mt-2"><em>Нажмите на изображение для увеличения</em></p>
             </div>
-            <div class="col-md-6" data-aos="fade-left">
-                <h1 class="text-purple">Dota 2 ESP Hack Ultimate</h1>
-                <p class="lead">Полный набор функций ESP для Dota 2: отображение врагов через стены, здоровье, мана, предметы противников. Идеальное решение для профессионального геймплея.</p>
-                <div class="p-3 bg-black rounded-3 mb-3">
-                    <h4 class="text-purple">Выберите вариант</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="yearly" value="2999" checked>
-                        <label class="form-check-label" for="yearly">
-                            Годовая подписка – <strong>2,999 руб.</strong> (экономия 33%)
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="monthly" value="299">
-                        <label class="form-check-label" for="monthly">
-                            Ежемесячная – <strong>299 руб./мес</strong>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="trial" value="99">
-                        <label class="form-check-label" for="trial">
-                            Пробная версия (3 дня) – <strong>99 руб.</strong>
-                        </label>
-                    </div>
+            
+            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                <h1 class="text-gradient">Dota 2 ESP Hack Ultimate</h1>
+                
+                <div class="product-rating mb-3">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span class="ms-2">(4.9 из 5, 128 отзывов)</span>
                 </div>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-purple flex-grow-1" id="addToCartBtn"><i class="bi bi-cart-plus me-2"></i>В корзину</button>
-                    <button class="btn btn-outline-purple flex-grow-1" data-bs-toggle="modal" data-bs-target="#quickViewModal">Быстрый просмотр</button>
+                
+                <div class="product-short-desc p-3 mb-4">
+                    <p class="lead">
+                        <i class="bi bi-eye-fill text-purple me-2"></i>
+                        Полный набор функций ESP для Dota 2: отображение врагов через стены, здоровье, ману, предметы противников.
+                    </p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Табы с подробной информацией -->
-        <div class="mt-5" data-aos="fade-up">
-            <ul class="nav nav-tabs nav-fill border-purple" id="productTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active bg-black text-light border-purple" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button" role="tab">Описание</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link bg-black text-light border-purple" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab">Характеристики</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link bg-black text-light border-purple" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Отзывы</button>
-                </li>
-            </ul>
-            <div class="tab-content p-4 bg-black border border-top-0 border-purple rounded-bottom" id="productTabContent">
-                <div class="tab-pane fade show active" id="desc" role="tabpanel">
-                    <h5>Подробное описание</h5>
-                    <p>Dota 2 ESP Hack Ultimate — это самый продвинутый инструмент для улучшения вашего игрового опыта...</p>
-                    <ul>
-                        <li>Отображение врагов через стены</li>
-                        <li>Индикаторы здоровья и маны</li>
-                        <li>Отображение предметов врага</li>
-                        <li>Таймеры способностей</li>
+                
+                <div class="product-price mb-4">
+                    <div class="h2 text-gradient">2,999 ₽/год</div>
+                    <div class="text-muted">или 299 ₽/месяц</div>
+                </div>
+                
+                <div class="product-buttons mb-4">
+                    <button class="btn btn-purple btn-lg w-100 mb-2 add-to-cart" data-product="Dota 2 ESP Hack Ultimate" data-price="2999">
+                        <i class="bi bi-cart-plus me-2"></i>Купить за 2,999 ₽/год
+                    </button>
+                    <button class="btn btn-outline-purple btn-lg w-100 add-to-cart-monthly" data-product="Dota 2 ESP Hack Ultimate" data-price="299">
+                        <i class="bi bi-calendar me-2"></i>Подписка: 299 ₽/месяц
+                    </button>
+                </div>
+                
+                <div class="product-features">
+                    <h3>Ключевые особенности</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Анти-бан защита: Уровень 5/5</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Версия: 2.5.1 (обновлено 15.11.2023)</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Совместимость: Windows 10/11</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Гарантия: 30 дней возврата средств</li>
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="specs" role="tabpanel">
-                    <h5>Характеристики</h5>
-                    <table class="table table-dark table-bordered border-purple">
-                        <tr><th>Тип чипа</th><td>ESP</td></tr>
-                        <tr><th>Версия</th><td>2.5.1 (обновлено 15.11.2023)</td></tr>
-                        <tr><th>Совместимость</th><td>Windows 10/11</td></tr>
-                        <tr><th>Защита</th><td>Уровень 5/5</td></tr>
-                    </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Технические характеристики -->
+    <section class="container py-4">
+        <h2 class="text-center mb-4" data-aos="fade-down">Технические характеристики</h2>
+        
+        <div class="table-responsive" data-aos="fade-up">
+            <table class="table table-dark table-bordered border-purple">
+                <thead>
+                    <tr class="bg-purple-gradient">
+                        <th rowspan="2" class="align-middle">Параметр</th>
+                        <th colspan="2" class="text-center">Значения</th>
+                        <th rowspan="2" class="align-middle">Единица</th>
+                    </tr>
+                    <tr class="bg-purple-gradient">
+                        <th>Мин.</th>
+                        <th>Макс.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Задержка отклика</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>мс</td>
+                    </tr>
+                    <tr>
+                        <td>Потребление ОЗУ</td>
+                        <td>50</td>
+                        <td>150</td>
+                        <td>МБ</td>
+                    </tr>
+                    <tr>
+                        <td>Частота обновления</td>
+                        <td>60</td>
+                        <td>144</td>
+                        <td>Гц</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-muted">*Данные актуальны для версии 2.5.1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Подробное описание -->
+    <section class="container py-4">
+        <div class="detailed-description" data-aos="fade-up">
+            <h2 class="text-center mb-4">Подробное описание</h2>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-shield-shaded fs-1 text-purple mb-3"></i>
+                        <h3>Невидимость для античита</h3>
+                        <p>Наша система использует запатентованные алгоритмы, которые делают использование чипа абсолютно незаметным для VAC и других античит-систем.</p>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="reviews" role="tabpanel">
-                    <p>Отзывов пока нет. Будьте первым!</p>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-eye fs-1 text-purple mb-3"></i>
+                        <h3>Полный ESP набор</h3>
+                        <p>Отображение врагов через стены, индикаторы здоровья и маны, предметы в инвентаре, таймеры способностей и многое другое.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-arrow-repeat fs-1 text-purple mb-3"></i>
+                        <h3>Автоматические обновления</h3>
+                        <p>Мы обновляем софт в течение 24 часов после выхода патча Dota 2. Вы всегда будете играть с актуальной версией.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-clock-history fs-1 text-purple mb-3"></i>
+                        <h3>Минимальная задержка</h3>
+                        <p>Всего 1-5 мс задержки. Вы получаете информацию быстрее, чем при обычном отображении игры.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <h3>Основные возможности:</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush bg-transparent">
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Отображение врагов через стены</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Индикаторы здоровья и маны</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Отображение предметов в инвентаре</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Таймеры способностей и КД</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Определение видимости врага</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush bg-transparent">
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Настраиваемый интерфейс</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Система предупреждения о гангах</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Отображение траекторий скиллов</li>
+                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Время возрождения врагов</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Варианты приобретения -->
+    <section class="container py-4">
+        <h2 class="text-center mb-4" data-aos="fade-down">Варианты приобретения</h2>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
+                <div class="price-card p-4">
+                    <h3 class="text-gradient">Годовая</h3>
+                    <div class="display-4 mb-3">2,999 ₽</div>
+                    <p class="text-muted">Самый выгодный вариант</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Полный доступ на 365 дней</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления бесплатно</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Приоритетная поддержка</li>
+                        <li class="mb-4"><i class="bi bi-check-circle-fill text-purple me-2"></i>Экономия 20%</li>
+                    </ul>
+                    <button class="btn btn-purple w-100 add-to-cart" data-product="Dota 2 ESP Hack Ultimate (Год)" data-price="2999">
+                        Выбрать
+                    </button>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
+                <div class="price-card popular p-4">
+                    <div class="popular-badge">Популярное</div>
+                    <h3 class="text-gradient">Ежемесячная</h3>
+                    <div class="display-4 mb-3">299 ₽</div>
+                    <p class="text-muted">Гибкий вариант</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Доступ на 30 дней</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления включены</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                        <li class="mb-4"><i class="bi bi-check-circle-fill text-purple me-2"></i>Без обязательств</li>
+                    </ul>
+                    <button class="btn btn-outline-purple w-100 add-to-cart-monthly" data-product="Dota 2 ESP Hack Ultimate (Месяц)" data-price="299">
+                        Выбрать
+                    </button>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="300">
+                <div class="price-card p-4">
+                    <h3 class="text-gradient">Пробная</h3>
+                    <div class="display-4 mb-3">99 ₽</div>
+                    <p class="text-muted">3 дня</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>3 дня полного доступа</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все функции</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка в рабочее время</li>
+                        <li class="mb-4"><i class="bi bi-check-circle-fill text-purple me-2"></i>Автоотписка</li>
+                    </ul>
+                    <button class="btn btn-purple w-100 add-to-cart-trial" data-product="Dota 2 ESP Hack Ultimate (Пробная)" data-price="99">
+                        Выбрать
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Инструкция по установке -->
+    <section class="container py-4">
+        <h2 class="text-center mb-4" data-aos="fade-down">Инструкция по установке</h2>
+        
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">1</div>
+                    <i class="bi bi-download fs-1 text-purple mb-3"></i>
+                    <h4>Скачайте</h4>
+                    <p>Скачайте программу с нашего сайта после покупки</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">2</div>
+                    <i class="bi bi-shield-slash fs-1 text-purple mb-3"></i>
+                    <h4>Отключите антивирус</h4>
+                    <p>На время установки отключите антивирус</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">3</div>
+                    <i class="bi bi-file-earmark-play fs-1 text-purple mb-3"></i>
+                    <h4>Запустите</h4>
+                    <p>Запустите установщик и следуйте инструкциям</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">4</div>
+                    <i class="bi bi-key fs-1 text-purple mb-3"></i>
+                    <h4>Введите ключ</h4>
+                    <p>Введите лицензионный ключ из письма</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Футер -->
+    <footer class="bg-black text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Suspender. Все права защищены.</p>
+                    <p class="mb-0">© geekbrains.ru</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-discord fs-4"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-envelope fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Модальное окно быстрого просмотра -->
-    <div class="modal fade" id="quickViewModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-light">
+    <!-- Модальное окно корзины -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-purple">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title">Быстрый просмотр</h5>
+                    <h5 class="modal-title"><i class="bi bi-cart3 me-2 text-purple"></i>Корзина</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <img src="https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13" class="img-fluid rounded-3">
-                    <p class="mt-3">Dota 2 ESP Hack Ultimate – полный набор функций ESP.</p>
+                <div class="modal-body" id="cartItems">
+                    <p class="text-center text-muted">Корзина пуста</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-purple" id="checkoutBtn">Оформить заказ</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Модалка корзины -->
-
+    <!-- Скрипты -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
