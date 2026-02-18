@@ -3,23 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dota 2 Script Pack Premium - Suspender</title>
+    <title>Suspender | Dota 2 Script Pack Premium</title>
+    
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- AOS animation -->
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Hover.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark text-light">
 
-    <!-- Навигация (та же) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">...</nav>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top animate__animated animate__fadeInDown">
+        <div class="container">
+            <a class="navbar-brand hvr-pulse-grow" href="index.html">
+                <img src="https://masterpiecer-images.s3.yandex.net/8f89d3528d4e11eea99abadf81d486ab:upscaled" 
+                     alt="Logo" width="50" height="50" class="d-inline-block align-text-top rounded-circle rotating-logo">
+                <span class="ms-2 fw-bold text-gradient">Suspender</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="index.html">
+                            <i class="bi bi-house-door me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="contacts.html">
+                            <i class="bi bi-envelope me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <button class="btn btn-outline-purple position-relative hvr-buzz" id="cartBtn">
+                        <i class="bi bi-cart3"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger animate__animated animate__pulse animate__infinite" 
+                              id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container mt-4">
-        <!-- Хлебные крошки -->
+    <!-- Хлебные крошки -->
+    <section class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html" class="text-purple">Главная</a></li>
@@ -27,140 +69,463 @@
                 <li class="breadcrumb-item active text-light" aria-current="page">Dota 2 Script Pack Premium</li>
             </ol>
         </nav>
+    </section>
 
+    <!-- Основная информация о товаре -->
+    <section class="container py-4">
         <div class="row g-4">
-            <div class="col-md-6" data-aos="fade-right">
-                <div class="card bg-black border-purple p-3">
-                    <img src="https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026" alt="Script Pack" class="img-fluid rounded-3 product-img" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                    <p class="text-center text-muted mt-2"><em>Нажмите на изображение для увеличения</em></p>
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="product-image-wrapper">
+                    <div class="product-badge">ПРЕМИУМ</div>
+                    <img src="https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026" 
+                         alt="Dota 2 Script Pack Premium" class="img-fluid product-image">
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <div class="feature-tag">Scripts</div>
+                    <div class="feature-tag">Combos</div>
+                    <div class="feature-tag">Auto Cast</div>
+                    <div class="feature-tag">400+ Heroes</div>
                 </div>
             </div>
-            <div class="col-md-6" data-aos="fade-left">
-                <h1 class="text-purple">Dota 2 Script Pack Premium</h1>
-                <p class="lead">Набор скриптов для всех героев с автоматизацией комбо и умных способностей. Профессиональные скрипты для максимальной эффективности в бою.</p>
-                <div class="p-3 bg-black rounded-3 mb-3">
-                    <h4 class="text-purple">Выберите вариант</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="yearly" value="3499" checked>
-                        <label class="form-check-label" for="yearly">
-                            Годовая подписка – <strong>3,499 руб.</strong> (экономия 33%)
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="monthly" value="349">
-                        <label class="form-check-label" for="monthly">
-                            Ежемесячная – <strong>349 руб./мес</strong>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="trial" value="299">
-                        <label class="form-check-label" for="trial">
-                            Пробная версия (10 дней) – <strong>299 руб.</strong>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="team" value="12999">
-                        <label class="form-check-label" for="team">
-                            Командная лицензия (5 аккаунтов) – <strong>12,999 руб./год</strong>
-                        </label>
-                    </div>
+            
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                <h1 class="text-gradient display-5">Dota 2 Script Pack Premium</h1>
+                
+                <div class="product-rating mb-3">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span class="ms-2">(4.9 из 5, 156 отзывов)</span>
                 </div>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-purple flex-grow-1" id="addToCartBtn"><i class="bi bi-cart-plus me-2"></i>В корзину</button>
-                    <button class="btn btn-outline-purple flex-grow-1" data-bs-toggle="modal" data-bs-target="#quickViewModal">Быстрый просмотр</button>
+                
+                <div class="product-short-desc mb-4">
+                    <p class="lead">
+                        <i class="bi bi-file-code-fill text-purple me-2"></i>
+                        Набор скриптов для всех героев с автоматизацией комбо и умных способностей.
+                        Профессиональные скрипты для максимальной эффективности в бою.
+                    </p>
+                </div>
+                
+                <div class="product-price mb-4">
+                    <div class="h1 text-gradient">3,499 ₽/год</div>
+                    <div class="text-muted">или 349 ₽/месяц</div>
+                </div>
+                
+                <div class="product-buttons mb-4">
+                    <button class="btn btn-purple btn-lg w-100 mb-2 add-to-cart" 
+                            data-product="Dota 2 Script Pack Premium" 
+                            data-price="3499">
+                        <i class="bi bi-cart-plus me-2"></i>Купить за 3,499 ₽/год
+                    </button>
+                    <button class="btn btn-outline-purple btn-lg w-100 add-to-cart-monthly" 
+                            data-product="Dota 2 Script Pack Premium" 
+                            data-price="349">
+                        <i class="bi bi-calendar me-2"></i>Подписка: 349 ₽/месяц
+                    </button>
+                </div>
+                
+                <div class="product-features">
+                    <h3>Ключевые особенности</h3>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Анти-бан защита 4/5</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Версия 5.0.1</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Windows 10/11/Linux</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>4 ГБ ОЗУ</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>DirectX 11</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>30 дней гарантии</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>400+ скриптов</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Табы -->
-        <div class="mt-5" data-aos="fade-up">
-            <ul class="nav nav-tabs nav-fill border-purple">
-                <li class="nav-item"><button class="nav-link active bg-black text-light border-purple" data-bs-toggle="tab" data-bs-target="#desc">Описание</button></li>
-                <li class="nav-item"><button class="nav-link bg-black text-light border-purple" data-bs-toggle="tab" data-bs-target="#specs">Характеристики</button></li>
-                <li class="nav-item"><button class="nav-link bg-black text-light border-purple" data-bs-toggle="tab" data-bs-target="#reviews">Отзывы</button></li>
-            </ul>
-            <div class="tab-content p-4 bg-black border border-top-0 border-purple rounded-bottom">
-                <div class="tab-pane fade show active" id="desc">
-                    <h5>Подробное описание</h5>
-                    <p>Dota 2 Script Pack Premium — это самый полный и продвинутый набор скриптов для Dota 2, включающий более 400 готовых решений для всех героев игры. От автоматизации простых комбинаций до сложных интеллектуальных систем управления способностями.</p>
-                    <p><strong>Основные возможности:</strong></p>
-                    <ul>
-                        <li>Автоматические комбинации способностей для всех героев</li>
-                        <li>Умное использование предметов в зависимости от ситуации</li>
-                        <li>Автоматическое уклонение от способностей врага</li>
-                        <li>Точное позиционирование для скиллов с областью действия (AoE)</li>
-                        <li>Интеллектуальный выбор цели в массовых боях</li>
-                        <li>Автоматическое использование BKB и защитных предметов</li>
-                        <li>Скрипты для ласт хита и деная под каждого героя</li>
-                        <li>Автоматическое прерывание кастов вражеских способностей</li>
-                        <li>Синхронизация способностей в командных драках</li>
-                        <li>Кастомизация всех скриптов под ваш стиль игры</li>
+    <!-- Технические характеристики -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Технические характеристики</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Количество скриптов</span>
+                        <span class="text-gradient fw-bold">400-500</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 90%">Максимум</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Скорость комбо</span>
+                        <span class="text-gradient fw-bold">20-50 мс</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 98%">Молниеносно</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Потребление ОЗУ</span>
+                        <span class="text-gradient fw-bold">60-200 МБ</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 40%">Среднее</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="250">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Поддерживаемых героев</span>
+                        <span class="text-gradient fw-bold">124</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 100%">Все</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-responsive mt-4" data-aos="fade-up">
+            <table class="table table-dark table-bordered border-purple">
+                <thead>
+                    <tr class="bg-purple-gradient">
+                        <th>Параметр</th>
+                        <th>Минимальное</th>
+                        <th>Максимальное</th>
+                        <th>Единица</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Количество скриптов</td>
+                        <td>400</td>
+                        <td>500</td>
+                        <td>скриптов</td>
+                    </tr>
+                    <tr>
+                        <td>Скорость выполнения комбо</td>
+                        <td>20</td>
+                        <td>50</td>
+                        <td>мс</td>
+                    </tr>
+                    <tr>
+                        <td>Потребление ОЗУ</td>
+                        <td>60</td>
+                        <td>200</td>
+                        <td>МБ</td>
+                    </tr>
+                    <tr>
+                        <td>Поддерживаемых героев</td>
+                        <td>124</td>
+                        <td>124</td>
+                        <td>героев</td>
+                    </tr>
+                    <tr>
+                        <td>Время адаптации к патчу</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>дней</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-muted text-center">*Данные актуальны для версии 5.0.1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Категории скриптов -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Категории скриптов</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box p-4">
+                    <h3 class="text-gradient">Базовые комбо</h3>
+                    <p class="display-4 text-center">200+</p>
+                    <p>Стандартные комбинации способностей для всех героев. Идеально для начинающих.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box p-4">
+                    <h3 class="text-gradient">Продвинутые комбо</h3>
+                    <p class="display-4 text-center">150+</p>
+                    <p>Сложные цепочки с учетом предметов и ситуаций. Для опытных игроков.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box p-4">
+                    <h3 class="text-gradient">Защитные скрипты</h3>
+                    <p class="display-4 text-center">50+</p>
+                    <p>Авто-BKB, авто-бланк, авто-сейвы. Защита в критические моменты.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-box p-4">
+                    <h3 class="text-gradient">Тактические скрипты</h3>
+                    <p class="display-4 text-center">80+</p>
+                    <p>Позиционирование, ротации, варды. Тактическое преимущество.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-box p-4">
+                    <h3 class="text-gradient">Герой-специфичные</h3>
+                    <p class="display-4 text-center">100+</p>
+                    <p>Уникальные скрипты под конкретных героев. Максимальная эффективность.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Примеры популярных скриптов -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Популярные скрипты</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Invoker Perfect Combo</h4>
+                    <p>Автоматический подбор и исполнение комбо Инвокера в зависимости от ситуации. Мгновенный каст всех способностей.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Tinker Blink-Hex</h4>
+                    <p>Мгновенное использование Blink + Hex на выбранной цели. Автоматическое переключение предметов.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Meepo Micro Control</h4>
+                    <p>Автоматическое управление всеми мипо. Распределение по целям, уклонение от способностей.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Storm Spirit Perfect Jump</h4>
+                    <p>Оптимальный прыжок с учетом манны и позиции. Автоматический расчет дистанции.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Pudge Hook Predictor</h4>
+                    <p>Автоматический расчет траектории хука с учетом движения цели. Предсказание на 2 секунды вперед.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Earthshaker Echo Slam</h4>
+                    <p>Оптимальное использование ульта по максимальному количеству целей. Расчет позиционирования.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Варианты приобретения -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Варианты приобретения</span>
+        </h2>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
+                <div class="price-card p-4">
+                    <h3 class="text-gradient">Годовая</h3>
+                    <div class="display-4 mb-3">3,499 ₽</div>
+                    <p class="text-muted">Самый выгодный вариант</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Полный доступ на 365 дней</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления бесплатно</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Приоритетная поддержка</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Экономия 20%</li>
                     </ul>
-                    <h6>Категории скриптов:</h6>
-                    <ol>
-                        <li><strong>Базовые комбо:</strong> Стандартные комбинации способностей (200+ скриптов)</li>
-                        <li><strong>Продвинутые комбо:</strong> Сложные цепочки с учетом предметов (150+ скриптов)</li>
-                        <li><strong>Защитные скрипты:</strong> Авто-BKB, авто-бланк, авто-сейвы (50+ скриптов)</li>
-                        <li><strong>Тактические скрипты:</strong> Позиционирование, ротации, варды (80+ скриптов)</li>
-                        <li><strong>Герой-специфичные:</strong> Уникальные скрипты под конкретных героев (100+ скриптов)</li>
-                    </ol>
+                    <button class="btn btn-purple w-100 add-to-cart" 
+                            data-product="Dota 2 Script Pack Premium (Год)" 
+                            data-price="3499">
+                        Выбрать
+                    </button>
                 </div>
-                <div class="tab-pane fade" id="specs">
-                    <h5>Характеристики</h5>
-                    <table class="table table-dark table-bordered border-purple">
-                        <tr><th>Тип чипа</th><td>Скрипты и макросы</td></tr>
-                        <tr><th>Версия</th><td>5.0.1 (обновлено 30.11.2023)</td></tr>
-                        <tr><th>Совместимость</th><td>Windows 10/11, Linux</td></tr>
-                        <tr><th>Защита от обнаружения</th><td>Уровень 4/5</td></tr>
-                        <tr><th>Требования</th><td>4 ГБ ОЗУ, DirectX 11</td></tr>
-                        <tr><th>Поддержка</th><td>24/7 в Telegram и Discord</td></tr>
-                        <tr><th>Гарантия</th><td>30 дней возврата средств</td></tr>
-                        <tr><th>Язык интерфейса</th><td>Русский, English, 中文</td></tr>
-                        <tr><th>Количество скриптов</th><td>400+ готовых решений</td></tr>
-                    </table>
-                    <h6 class="mt-3">Технические характеристики</h6>
-                    <table class="table table-dark table-bordered border-purple">
-                        <thead><tr><th>Параметр</th><th>Мин.</th><th>Макс.</th><th>Единица</th></tr></thead>
-                        <tbody>
-                            <tr><td>Количество скриптов</td><td>400</td><td>500</td><td>скриптов</td></tr>
-                            <tr><td>Скорость выполнения комбо</td><td>20</td><td>50</td><td>мс (на комбо)</td></tr>
-                            <tr><td>Потребление ОЗУ</td><td>60</td><td>200</td><td>МБ</td></tr>
-                            <tr><td>Поддерживаемых героев</td><td>124</td><td>124</td><td>героев</td></tr>
-                            <tr><td>Время адаптации к патчу</td><td>1</td><td>3</td><td>дней</td></tr>
-                            <tr><td>Частота обновления базы</td><td>1</td><td>7</td><td>раз в неделю</td></tr>
-                            <tr><td colspan="4">*Данные актуальны для версии 5.0.1</td></tr>
-                        </tbody>
-                    </table>
+            </div>
+            
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
+                <div class="price-card popular p-4">
+                    <div class="popular-badge">Популярное</div>
+                    <h3 class="text-gradient">Ежемесячная</h3>
+                    <div class="display-4 mb-3">349 ₽</div>
+                    <p class="text-muted">Гибкий вариант</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Доступ на 30 дней</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления включены</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Без обязательств</li>
+                    </ul>
+                    <button class="btn btn-outline-purple w-100 add-to-cart-monthly" 
+                            data-product="Dota 2 Script Pack Premium (Месяц)" 
+                            data-price="349">
+                        Выбрать
+                    </button>
                 </div>
-                <div class="tab-pane fade" id="reviews">
-                    <p>Отзывов пока нет. Будьте первым!</p>
+            </div>
+            
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="300">
+                <div class="price-card p-4">
+                    <h3 class="text-gradient">Пробная</h3>
+                    <div class="display-4 mb-3">299 ₽</div>
+                    <p class="text-muted">10 дней</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>10 дней полного доступа</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все функции</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка в рабочее время</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Автоотписка</li>
+                    </ul>
+                    <button class="btn btn-purple w-100 add-to-cart-trial" 
+                            data-product="Dota 2 Script Pack Premium (Пробная)" 
+                            data-price="299">
+                        Выбрать
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Футер и модалки -->
-    <footer class="bg-black text-light py-4 mt-5">...</footer>
-
-    <!-- Модальное окно быстрого просмотра -->
-    <div class="modal fade" id="quickViewModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-light">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title">Быстрый просмотр</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026" class="img-fluid rounded-3">
-                    <p class="mt-3">Dota 2 Script Pack Premium – более 400 скриптов для всех героев.</p>
+        
+        <div class="row mt-4">
+            <div class="col-md-6 mx-auto" data-aos="fade-up" data-aos-delay="400">
+                <div class="price-card p-4 text-center">
+                    <h3 class="text-gradient">Командная лицензия</h3>
+                    <div class="display-4 mb-3">12,999 ₽</div>
+                    <p class="text-muted">Для 5 аккаунтов</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>5 аккаунтов</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Общий доступ</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Командная поддержка</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Экономия 25%</li>
+                    </ul>
+                    <button class="btn btn-purple w-100 add-to-cart" 
+                            data-product="Dota 2 Script Pack Premium (Команда)" 
+                            data-price="12999">
+                        Выбрать
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Инструкция по установке -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Инструкция по установке</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">1</div>
+                    <i class="bi bi-download fs-1 text-purple mb-3"></i>
+                    <h4>Скачайте архив</h4>
+                    <p>Скачайте архив со скриптами с нашего сайта</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">2</div>
+                    <i class="bi bi-folder-symlink fs-1 text-purple mb-3"></i>
+                    <h4>Распакуйте</h4>
+                    <p>Распакуйте архив в папку Scripts в директории Dota 2</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">3</div>
+                    <i class="bi bi-gear fs-1 text-purple mb-3"></i>
+                    <h4>Установите менеджер</h4>
+                    <p>Установите программу ScriptManager.exe</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">4</div>
+                    <i class="bi bi-key fs-1 text-purple mb-3"></i>
+                    <h4>Настройте</h4>
+                    <p>Настройте горячие клавиши для активации скриптов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-black text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Suspender. Все права защищены.</p>
+                    <p class="mb-0">© geekbrains.ru</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-discord fs-4"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-envelope fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Модальное окно корзины -->
-    <div class="modal fade" id="cartModal" tabindex="-1">...</div>
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-purple">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title"><i class="bi bi-cart3 me-2 text-purple"></i>Корзина</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <p class="text-center text-muted">Корзина пуста</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-purple" id="checkoutBtn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Скрипты -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
