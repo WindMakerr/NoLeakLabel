@@ -71,19 +71,25 @@
         </nav>
     </section>
 
-    <!-- Товар -->
+    <!-- Основная информация о товаре -->
     <section class="container py-4">
         <div class="row g-4">
-            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
                 <div class="product-image-wrapper">
+                    <div class="product-badge">ХИТ ПРОДАЖ</div>
                     <img src="https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13" 
-                         alt="Dota 2 ESP Hack Ultimate" class="img-fluid rounded-4 product-image hvr-grow">
+                         alt="Dota 2 ESP Hack Ultimate" class="img-fluid product-image">
                 </div>
-                <p class="text-center mt-2"><em>Нажмите на изображение для увеличения</em></p>
+                <div class="d-flex justify-content-center mt-3">
+                    <div class="feature-tag">ESP</div>
+                    <div class="feature-tag">Wallhack</div>
+                    <div class="feature-tag">Anti-Ban</div>
+                    <div class="feature-tag">24/7 Support</div>
+                </div>
             </div>
             
-            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
-                <h1 class="text-gradient">Dota 2 ESP Hack Ultimate</h1>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                <h1 class="text-gradient display-5">Dota 2 ESP Hack Ultimate</h1>
                 
                 <div class="product-rating mb-3">
                     <i class="bi bi-star-fill text-warning"></i>
@@ -94,56 +100,109 @@
                     <span class="ms-2">(4.9 из 5, 128 отзывов)</span>
                 </div>
                 
-                <div class="product-short-desc p-3 mb-4">
+                <div class="product-short-desc mb-4">
                     <p class="lead">
                         <i class="bi bi-eye-fill text-purple me-2"></i>
-                        Полный набор функций ESP для Dota 2: отображение врагов через стены, здоровье, ману, предметы противников.
+                        Полный набор функций ESP для Dota 2: отображение врагов через стены, 
+                        здоровье, ману, предметы противников. Идеальное решение для профессионального геймплея.
                     </p>
                 </div>
                 
                 <div class="product-price mb-4">
-                    <div class="h2 text-gradient">2,999 ₽/год</div>
+                    <div class="h1 text-gradient">2,999 ₽/год</div>
                     <div class="text-muted">или 299 ₽/месяц</div>
                 </div>
                 
                 <div class="product-buttons mb-4">
-                    <button class="btn btn-purple btn-lg w-100 mb-2 add-to-cart" data-product="Dota 2 ESP Hack Ultimate" data-price="2999">
+                    <button class="btn btn-purple btn-lg w-100 mb-2 add-to-cart" 
+                            data-product="Dota 2 ESP Hack Ultimate" 
+                            data-price="2999">
                         <i class="bi bi-cart-plus me-2"></i>Купить за 2,999 ₽/год
                     </button>
-                    <button class="btn btn-outline-purple btn-lg w-100 add-to-cart-monthly" data-product="Dota 2 ESP Hack Ultimate" data-price="299">
+                    <button class="btn btn-outline-purple btn-lg w-100 add-to-cart-monthly" 
+                            data-product="Dota 2 ESP Hack Ultimate" 
+                            data-price="299">
                         <i class="bi bi-calendar me-2"></i>Подписка: 299 ₽/месяц
                     </button>
                 </div>
                 
                 <div class="product-features">
                     <h3>Ключевые особенности</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Анти-бан защита: Уровень 5/5</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Версия: 2.5.1 (обновлено 15.11.2023)</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Совместимость: Windows 10/11</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Гарантия: 30 дней возврата средств</li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Анти-бан защита 5/5</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Версия 2.5.1</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Windows 10/11</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>4 ГБ ОЗУ</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>DirectX 11</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>30 дней гарантии</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Обновления бесплатно</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Технические характеристики -->
-    <section class="container py-4">
-        <h2 class="text-center mb-4" data-aos="fade-down">Технические характеристики</h2>
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Технические характеристики</span>
+        </h2>
         
-        <div class="table-responsive" data-aos="fade-up">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Задержка отклика</span>
+                        <span class="text-gradient fw-bold">1-5 мс</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 95%">Оптимально</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Потребление ОЗУ</span>
+                        <span class="text-gradient fw-bold">50-150 МБ</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 30%">Экономно</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Частота обновления</span>
+                        <span class="text-gradient fw-bold">60-144 Гц</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 90%">Высокая</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-responsive mt-4" data-aos="fade-up">
             <table class="table table-dark table-bordered border-purple">
                 <thead>
                     <tr class="bg-purple-gradient">
-                        <th rowspan="2" class="align-middle">Параметр</th>
-                        <th colspan="2" class="text-center">Значения</th>
-                        <th rowspan="2" class="align-middle">Единица</th>
-                    </tr>
-                    <tr class="bg-purple-gradient">
-                        <th>Мин.</th>
-                        <th>Макс.</th>
+                        <th>Параметр</th>
+                        <th>Минимальное</th>
+                        <th>Максимальное</th>
+                        <th>Единица</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,7 +225,7 @@
                         <td>Гц</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-muted">*Данные актуальны для версии 2.5.1</td>
+                        <td colspan="4" class="text-muted text-center">*Данные актуальны для версии 2.5.1</td>
                     </tr>
                 </tbody>
             </table>
@@ -174,86 +233,141 @@
     </section>
 
     <!-- Подробное описание -->
-    <section class="container py-4">
-        <div class="detailed-description" data-aos="fade-up">
-            <h2 class="text-center mb-4">Подробное описание</h2>
-            
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="feature-box p-4">
-                        <i class="bi bi-shield-shaded fs-1 text-purple mb-3"></i>
-                        <h3>Невидимость для античита</h3>
-                        <p>Наша система использует запатентованные алгоритмы, которые делают использование чипа абсолютно незаметным для VAC и других античит-систем.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="feature-box p-4">
-                        <i class="bi bi-eye fs-1 text-purple mb-3"></i>
-                        <h3>Полный ESP набор</h3>
-                        <p>Отображение врагов через стены, индикаторы здоровья и маны, предметы в инвентаре, таймеры способностей и многое другое.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="feature-box p-4">
-                        <i class="bi bi-arrow-repeat fs-1 text-purple mb-3"></i>
-                        <h3>Автоматические обновления</h3>
-                        <p>Мы обновляем софт в течение 24 часов после выхода патча Dota 2. Вы всегда будете играть с актуальной версией.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="feature-box p-4">
-                        <i class="bi bi-clock-history fs-1 text-purple mb-3"></i>
-                        <h3>Минимальная задержка</h3>
-                        <p>Всего 1-5 мс задержки. Вы получаете информацию быстрее, чем при обычном отображении игры.</p>
-                    </div>
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Подробное описание</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-shield-shaded fs-1 text-purple mb-3"></i>
+                    <h3>Невидимость для античита</h3>
+                    <p>Наша система использует запатентованные алгоритмы, которые делают использование чипа абсолютно незаметным для VAC, FaceIt и других античит-систем. Уровень защиты 5/5 - максимальный на рынке.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Обход VAC</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Невидимость для FaceIt</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Защита от ESEA</li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="mt-4">
-                <h3>Основные возможности:</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul class="list-group list-group-flush bg-transparent">
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Отображение врагов через стены</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Индикаторы здоровья и маны</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Отображение предметов в инвентаре</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Таймеры способностей и КД</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Определение видимости врага</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="list-group list-group-flush bg-transparent">
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Настраиваемый интерфейс</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Система предупреждения о гангах</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Отображение траекторий скиллов</li>
-                            <li class="list-group-item bg-transparent text-light"><i class="bi bi-check-circle text-purple me-2"></i>Время возрождения врагов</li>
-                        </ul>
-                    </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-eye fs-1 text-purple mb-3"></i>
+                    <h3>Полный ESP набор</h3>
+                    <p>Отображение врагов через стены, индикаторы здоровья и маны, предметы в инвентаре, таймеры способностей и многое другое. Настраивайте отображение под свой стиль игры.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Враги через стены</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Здоровье и мана</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Предметы и КД</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-arrow-repeat fs-1 text-purple mb-3"></i>
+                    <h3>Автоматические обновления</h3>
+                    <p>Мы обновляем софт в течение 24 часов после выхода патча Dota 2. Вы всегда будете играть с актуальной версией, совместимой с последними изменениями игры.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Обновление за 24 часа</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Автоматическая установка</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>История версий</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-clock-history fs-1 text-purple mb-3"></i>
+                    <h3>Минимальная задержка</h3>
+                    <p>Всего 1-5 мс задержки. Вы получаете информацию быстрее, чем при обычном отображении игры. Оптимизировано для профессионального использования.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>1-5 мс задержка</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>60-144 FPS</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Низкая нагрузка</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5" data-aos="fade-up">
+            <h3 class="text-center mb-4">Все возможности ESP Hack Ultimate</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Отображение врагов через стены
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Индикаторы здоровья и маны
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Отображение предметов в инвентаре
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Таймеры способностей и КД
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Определение видимости врага
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Настраиваемый интерфейс
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Система предупреждения о гангах
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Отображение траекторий скиллов
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Время возрождения врагов
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Цветовые схемы
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Горячие клавиши
+                        </li>
+                        <li class="list-group-item bg-transparent text-light">
+                            <i class="bi bi-check-circle text-purple me-2"></i>Режим стелс
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Варианты приобретения -->
-    <section class="container py-4">
-        <h2 class="text-center mb-4" data-aos="fade-down">Варианты приобретения</h2>
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Варианты приобретения</span>
+        </h2>
         
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
             <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
                 <div class="price-card p-4">
                     <h3 class="text-gradient">Годовая</h3>
                     <div class="display-4 mb-3">2,999 ₽</div>
                     <p class="text-muted">Самый выгодный вариант</p>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled mb-4">
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Полный доступ на 365 дней</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления бесплатно</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Приоритетная поддержка</li>
-                        <li class="mb-4"><i class="bi bi-check-circle-fill text-purple me-2"></i>Экономия 20%</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Экономия 20%</li>
                     </ul>
-                    <button class="btn btn-purple w-100 add-to-cart" data-product="Dota 2 ESP Hack Ultimate (Год)" data-price="2999">
+                    <button class="btn btn-purple w-100 add-to-cart" 
+                            data-product="Dota 2 ESP Hack Ultimate (Год)" 
+                            data-price="2999">
                         Выбрать
                     </button>
                 </div>
@@ -265,13 +379,15 @@
                     <h3 class="text-gradient">Ежемесячная</h3>
                     <div class="display-4 mb-3">299 ₽</div>
                     <p class="text-muted">Гибкий вариант</p>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled mb-4">
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Доступ на 30 дней</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления включены</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
-                        <li class="mb-4"><i class="bi bi-check-circle-fill text-purple me-2"></i>Без обязательств</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Без обязательств</li>
                     </ul>
-                    <button class="btn btn-outline-purple w-100 add-to-cart-monthly" data-product="Dota 2 ESP Hack Ultimate (Месяц)" data-price="299">
+                    <button class="btn btn-outline-purple w-100 add-to-cart-monthly" 
+                            data-product="Dota 2 ESP Hack Ultimate (Месяц)" 
+                            data-price="299">
                         Выбрать
                     </button>
                 </div>
@@ -282,13 +398,15 @@
                     <h3 class="text-gradient">Пробная</h3>
                     <div class="display-4 mb-3">99 ₽</div>
                     <p class="text-muted">3 дня</p>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled mb-4">
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>3 дня полного доступа</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все функции</li>
                         <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка в рабочее время</li>
-                        <li class="mb-4"><i class="bi bi-check-circle-fill text-purple me-2"></i>Автоотписка</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Автоотписка</li>
                     </ul>
-                    <button class="btn btn-purple w-100 add-to-cart-trial" data-product="Dota 2 ESP Hack Ultimate (Пробная)" data-price="99">
+                    <button class="btn btn-purple w-100 add-to-cart-trial" 
+                            data-product="Dota 2 ESP Hack Ultimate (Пробная)" 
+                            data-price="99">
                         Выбрать
                     </button>
                 </div>
@@ -296,9 +414,180 @@
         </div>
     </section>
 
+    <!-- Сравнение с конкурентами -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Сравнение с конкурентами</span>
+        </h2>
+        
+        <div class="comparison-table" data-aos="fade-up">
+            <table class="table table-dark table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th>Характеристика</th>
+                        <th>Suspender ESP</th>
+                        <th>Конкурент A</th>
+                        <th>Конкурент B</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Задержка (мс)</td>
+                        <td class="text-success">1-5</td>
+                        <td>10-20</td>
+                        <td>15-30</td>
+                    </tr>
+                    <tr>
+                        <td>Анти-бан защита</td>
+                        <td class="text-success">5/5</td>
+                        <td>3/5</td>
+                        <td>4/5</td>
+                    </tr>
+                    <tr>
+                        <td>Обновления после патча</td>
+                        <td class="text-success">24 часа</td>
+                        <td>72 часа</td>
+                        <td>48 часов</td>
+                    </tr>
+                    <tr>
+                        <td>Поддержка 24/7</td>
+                        <td class="text-success">✅</td>
+                        <td>❌</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <td>Гарантия возврата</td>
+                        <td class="text-success">30 дней</td>
+                        <td>14 дней</td>
+                        <td>7 дней</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Отзывы наших клиентов</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User" class="testimonial-avatar me-3">
+                        <div>
+                            <h5 class="mb-0">Алексей "Shadow"</h5>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-0">"Лучший ESP, который я пробовал. Задержка минимальная, антибан работает отлично. Уже полгода без проблем!"</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="User" class="testimonial-avatar me-3">
+                        <div>
+                            <h5 class="mb-0">Екатерина "Phantom"</h5>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-0">"Подняла MMR на 1000 за месяц. Вижу все перемещения врагов, ганги теперь не страшны. Спасибо команде!"</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="testimonial-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="User" class="testimonial-avatar me-3">
+                        <div>
+                            <h5 class="mb-0">Дмитрий "Invoker"</h5>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-0">"Отличная поддержка, быстро отвечают. Обновления выходят мгновенно после патчей. Рекомендую!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Часто задаваемые вопросы</span>
+        </h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Как работает защита от бана?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы используем запатентованную технологию обхода античита, которая маскирует наше ПО под системные процессы Windows. Дополнительно применяется шифрование трафика и рандомизация памяти.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Как часто выходят обновления?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>После каждого патча Dota 2 мы выпускаем обновление в течение 24 часов. В среднем выходит 2-3 обновления в месяц. Все обновления бесплатны для наших клиентов.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Можно ли использовать на нескольких ПК?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, лицензия позволяет использовать продукт на 2 устройствах одновременно. Для активации на новом устройстве просто введите тот же лицензионный ключ.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Как вернуть деньги, если не подойдет?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы предоставляем гарантию 30 дней. Если продукт вам не подходит, напишите в поддержку, и мы вернем полную стоимость без лишних вопросов.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Инструкция по установке -->
-    <section class="container py-4">
-        <h2 class="text-center mb-4" data-aos="fade-down">Инструкция по установке</h2>
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Инструкция по установке</span>
+        </h2>
         
         <div class="row g-4">
             <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
@@ -379,5 +668,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script>
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
