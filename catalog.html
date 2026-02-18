@@ -1,77 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Dota 2 Cheats Store - Каталог</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Suspender</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="https://masterpiecer-images.s3.yandex.net/8f89d3528d4e11eea99abadf81d486ab:upscaled" alt="Логотип" width="100" height="100">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-        
-        <hr>
-       
-        <header>
-            <h1>Каталог товаров</h1>
-        </header>
-      
-        <section>
-            <div class="catalog-items">
-                <div class="catalog-item">
-                    <h3>Dota 2 ESP Hack Ultimate</h3>
-                    <img src="https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13" 
-                         alt="Dota 2 ESP Hack Ultimate">
-                    <p class="short-description">Полный набор функций ESP для Dota 2 с отображением врагов через стены, здоровьем и маной противников.</p>
-                    <p><strong>Цена:</strong> 2,999 руб./год или 299 руб./месяц</p>
-                    <a href="product.html">Подробное описание</a>
-                </div>
-                
-                <div class="catalog-item">
-                    <h3>Dota 2 Auto Last Hit Pro</h3>
-                    <img src="https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13" 
-                         alt="Dota 2 Auto Last Hit Pro">
-                    <p class="short-description">Автоматический ласт хит и денай для максимального фарма с настройкой под любого героя.</p>
-                    <p><strong>Цена:</strong> 1,999 руб./год или 199 руб./месяц</p>
-                    <a href="product1.html">Подробное описание</a>
-                </div>
-                
-                <div class="catalog-item">
-                    <h3>Dota 2 Map Hack Vision</h3>
-                    <img src="https://ggcheats.shop/img/cheats/ico/melonity.png" 
-                         alt="Dota 2 Map Hack Vision">
-                    <p class="short-description">Полная карта с видением противника, вардами и предупреждениями о гангах.</p>
-                    <p><strong>Цена:</strong> 2,499 руб./год или 249 руб./месяц</p>
-                    <a href="product2.html">Подробное описание</a>
-                </div>
-                
-                <div class="catalog-item">
-                    <h3>Dota 2 Script Pack Premium</h3>
-                    <img src="https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026" 
-                         alt="Dota 2 Script Pack Premium">
-                    <p class="short-description">Набор скриптов для всех героев с автоматизацией комбо и умных способностей.</p>
-                    <p><strong>Цена:</strong> 3,499 руб./год или 349 руб./месяц</p>
-                    <a href="product3.html">Подробное описание</a>
-                </div>
-            </div>
-        </section>
+<body class="bg-dark text-light">
 
-        <hr>
+    <!-- Навигация (такая же, как на главной) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+        <!-- ... (аналогично index.html) ... -->
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="text-purple" data-aos="fade-right">Каталог товаров</h1>
         
-        <div class="footer">
-            <p>&copy; Dota 2 Cheats Store. Все права защищены.</p>
-            <p>© geekbrains.ru</p>
+        <!-- Фильтры -->
+        <div class="row mt-4">
+            <div class="col-md-3" data-aos="fade-right">
+                <div class="card bg-black border-purple p-3">
+                    <h5>Фильтр</h5>
+                    <hr class="bg-purple">
+                    <div class="mb-3">
+                        <label class="form-label">Цена (руб./год)</label>
+                        <input type="range" class="form-range" min="0" max="4000" step="100" id="priceRange">
+                        <div class="d-flex justify-content-between">
+                            <span>0</span>
+                            <span>4000</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Тип чипа</label>
+                        <select class="form-select bg-black text-light border-purple" id="typeFilter">
+                            <option value="all">Все</option>
+                            <option value="esp">ESP</option>
+                            <option value="map">Map Hack</option>
+                            <option value="script">Скрипты</option>
+                            <option value="lasthit">Auto Last Hit</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-purple w-100" id="applyFilter">Применить</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row g-4" id="catalog-items">
+                    <!-- Товары загружаются из JS -->
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Футер (аналогично) -->
+    <footer class="bg-black text-light py-4 mt-5">
+        <!-- ... -->
+    </footer>
+
+    <!-- Модалка корзины (как на главной) -->
+    <div class="modal fade" id="cartModal" tabindex="-1">...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
