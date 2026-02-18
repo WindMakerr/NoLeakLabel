@@ -1,4 +1,4 @@
-// Инициализация AOS с расширенными настройками
+// Инициализация AOS
 AOS.init({
     duration: 1200,
     once: false,
@@ -12,13 +12,10 @@ AOS.init({
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function updateCartCount() {
-    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const count = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
     const cartCountElem = document.getElementById('cartCount');
     if (cartCountElem) {
         cartCountElem.textContent = count;
-        cartCountElem.style.animation = 'none';
-        cartCountElem.offsetHeight;
-        cartCountElem.style.animation = 'badgePulse 0.3s ease';
     }
 }
 
@@ -27,16 +24,16 @@ function renderCartModal() {
     if (!cartContainer) return;
     
     if (cart.length === 0) {
-        cartContainer.innerHTML = '<p class="text-center"><i class="bi bi-cart-x" style="font-size: 3rem; color: var(--neon-purple);"></i><br>Корзина пуста</p>';
+        cartContainer.innerHTML = '<p class="text-center">Корзина пуста</p>';
     } else {
         let html = '';
         cart.forEach((item, index) => {
             html += `
-                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2 animate__animated animate__fadeIn" style="animation: slideIn 0.3s ease;">
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2">
                     <div>
                         <strong class="text-purple">${item.name}</strong><br>
-                        <small>${item.option} - ${item.price} руб.</small>
-                        <span class="badge bg-purple ms-2">x${item.quantity}</span>
+                        <small>${item.option || ''} - ${item.price} руб.</small>
+                        <span class="badge bg-purple ms-2">x${item.quantity || 1}</span>
                     </div>
                     <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
                         <i class="bi bi-trash"></i>
@@ -44,46 +41,52 @@ function renderCartModal() {
                 </div>
             `;
         });
-        const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        const total = cart.reduce((acc, item) => acc + ((item.price || 0) * (item.quantity || 1)), 0);
         html += `<h5 class="mt-3 text-end text-purple">Итого: ${total} руб.</h5>`;
         cartContainer.innerHTML = html;
     }
 }
 
 function addToCart(name, price, option) {
+    if (!name || !price) return;
+    
     const existing = cart.find(item => item.name === name && item.option === option);
     if (existing) {
-        existing.quantity++;
+        existing.quantity = (existing.quantity || 1) + 1;
     } else {
         cart.push({ name, price, option, quantity: 1 });
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     renderCartModal();
-    
-    // Кастомное уведомление
     showNotification('Товар добавлен в корзину!', 'success');
 }
 
+window.addToCart = addToCart;
+
 function removeFromCart(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCartModal();
-    showNotification('Товар удален из корзины', 'warning');
+    if (index >= 0 && index < cart.length) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCartModal();
+        showNotification('Товар удален из корзины', 'warning');
+    }
 }
+
+window.removeFromCart = removeFromCart;
 
 // Кастомное уведомление
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
-    notification.className = `alert alert-${type} position-fixed top-0 end-0 m-3 animate__animated animate__fadeInRight`;
-    notification.style.zIndex = '9999';
+    notification.className = `alert alert-${type} position-fixed top-0 end-0 m-3`;
+    notification.style.cssText = 'z-index: 9999; background: #8B00FF; color: white; border: none; padding: 15px 25px; border-radius: 10px; animation: slideInRight 0.3s;';
     notification.innerHTML = message;
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.classList.add('animate__fadeOutRight');
-        setTimeout(() => notification.remove(), 500);
+        notification.style.animation = 'slideOutRight 0.3s';
+        setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
@@ -106,11 +109,10 @@ document.querySelectorAll('#addToCartBtn').forEach(btn => {
             return;
         }
         const price = parseInt(selected.value);
-        const option = selected.nextElementSibling.textContent.trim();
-        const name = document.querySelector('h1').textContent;
+        const option = selected.nextElementSibling?.textContent?.trim() || '';
+        const name = document.querySelector('h1')?.textContent || 'Товар';
         addToCart(name, price, option);
         
-        // Анимация кнопки
         this.style.transform = 'scale(0.95)';
         setTimeout(() => this.style.transform = 'scale(1)', 200);
     });
@@ -123,19 +125,20 @@ document.getElementById('checkoutBtn')?.addEventListener('click', () => {
         return;
     }
     
-    // Анимация оформления
     showNotification('Заказ оформлен! С вами свяжутся.', 'success');
     
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
-    bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+    
+    const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+    if (modal) modal.hide();
 });
 
 // Анимация частиц Three.js
 function initParticles() {
     const canvas = document.getElementById('particle-canvas');
-    if (!canvas) return;
+    if (!canvas || !window.THREE) return;
     
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -328,18 +331,16 @@ if (document.getElementById('catalog-items')) {
         
         renderCatalog(filtered);
         
-        // Анимация кнопки
         const btn = document.getElementById('applyFilter');
         btn.style.transform = 'scale(0.95)';
         setTimeout(() => btn.style.transform = 'scale(1)', 200);
     });
 }
 
-// Валидация формы контактов с анимацией
+// Валидация формы контактов
 document.getElementById('contactForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Анимация отправки
     const btn = e.target.querySelector('button[type="submit"]');
     btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Отправка...';
     btn.disabled = true;
@@ -360,28 +361,33 @@ if (priceRange) {
         const value = e.target.value;
         if (!priceDisplay.parentNode) {
             priceDisplay.className = 'badge bg-purple position-absolute';
-            priceDisplay.style.left = `${(value / 4000) * 100}%`;
+            priceDisplay.style.cssText = 'top: -25px; transform: translateX(-50%);';
+            priceRange.parentNode.style.position = 'relative';
             priceRange.parentNode.appendChild(priceDisplay);
         }
         priceDisplay.textContent = `${value} ₽`;
-        priceDisplay.style.left = `${(value / 4000) * 100}%`;
+        const percent = (value / 4000) * 100;
+        priceDisplay.style.left = `${percent}%`;
     });
 }
 
 // Анимация при наведении на карточки
 document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.animation = 'pulse 1s infinite';
-    });
-    card.addEventListener('mouseleave', function() {
-        this.style.animation = '';
+        this.style.transition = 'all 0.3s';
     });
 });
 
-// Инициализация всех анимаций
-document.addEventListener('DOMContentLoaded', () => {
-    // Добавляем класс animate__animated для элементов
-    document.querySelectorAll('h1, h2, h3').forEach(el => {
-        el.classList.add('animate__animated', 'animate__fadeIn');
-    });
-});
+// Добавляем стили для уведомлений
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
