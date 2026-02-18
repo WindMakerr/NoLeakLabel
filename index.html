@@ -1,48 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Suspender - Главная</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspender – Главная</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- AOS animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="https://masterpiecer-images.s3.yandex.net/8f89d3528d4e11eea99abadf81d486ab:upscaled" alt="Логотип" width="100" height="100">
-                <div class="logo-text">
-                    <span>Suspender</span>
+<body class="bg-dark text-light">
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="https://masterpiecer-images.s3.yandex.net/8f89d3528d4e11eea99abadf81d486ab:upscaled" alt="Logo" width="50" height="50" class="d-inline-block align-text-top rounded-circle">
+                <span class="ms-2 fw-bold text-purple">Suspender</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <button class="btn btn-outline-light position-relative" id="cartBtn">
+                        <i class="bi bi-cart3"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+                    </button>
                 </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                </ul>
-            </nav>
         </div>
-        
-        <hr>
-        
-        <header>
-            <h1>Suspender</h1>
-            <h3>Лучшие читы для Dota 2</h3>
-        </header>
-        
-        <section>
-            <h2>Добро пожаловать в наш магазин!</h2>
-            <p>Мы предлагаем самые надежные и эффективные инструменты для улучшения вашего игрового опыта в Dota 2.</p>
-            <p>Все наши продукты регулярно обновляются и имеют высокий уровень защиты от обнаружения.</p>
-            <p>Выберите подходящий вариант из нашего каталога и станьте непобедимым на поле боя!</p>
-        </section>
-        
-        <hr>
-        
-        <div class="footer">
-            <p>&copy; Suspender. Все права защищены.</p>
-            <p>© geekbrains.ru</p>
+    </nav>
+
+    <!-- Hero секция с каруселью -->
+    <header class="container mt-4" data-aos="fade-up">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow-lg">
+                <div class="carousel-item active">
+                    <img src="https://via.placeholder.com/1200x400/1a1a1a/8B00FF?text=ESP+Hack+Ultimate" class="d-block w-100" alt="ESP">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                        <h3>Dota 2 ESP Hack Ultimate</h3>
+                        <p>Видеть врагов сквозь стены – реально!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/1200x400/1a1a1a/4CAF50?text=Auto+Last+Hit+Pro" class="d-block w-100" alt="Last Hit">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                        <h3>Auto Last Hit Pro</h3>
+                        <p>Максимальный фарм без усилий</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/1200x400/1a1a1a/FF5722?text=Map+Hack+Vision" class="d-block w-100" alt="Map Hack">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3">
+                        <h3>Map Hack Vision</h3>
+                        <p>Полный контроль над картой</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Преимущества -->
+    <section class="container mt-5">
+        <h2 class="text-center text-purple mb-4" data-aos="fade-down">Почему выбирают нас</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card bg-black text-light border-purple h-100 text-center p-3">
+                    <i class="bi bi-shield-shaded fs-1 text-purple"></i>
+                    <h4>Анти-бан защита</h4>
+                    <p>Уровень защиты 5/5 – ваш аккаунт в безопасности</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card bg-black text-light border-purple h-100 text-center p-3">
+                    <i class="bi bi-arrow-repeat fs-1 text-purple"></i>
+                    <h4>Мгновенные обновления</h4>
+                    <p>После каждого патча Dota 2 в течение 24 часов</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card bg-black text-light border-purple h-100 text-center p-3">
+                    <i class="bi bi-headset fs-1 text-purple"></i>
+                    <h4>Поддержка 24/7</h4>
+                    <p>Telegram, Discord – всегда на связи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные товары (мини-каталог) -->
+    <section class="container mt-5">
+        <h2 class="text-center text-purple mb-4" data-aos="fade-down">Популярные товары</h2>
+        <div class="row g-4" id="popular-products">
+            <!-- будут заполнены через JS -->
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-black text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Suspender. Все права защищены.</p>
+            <p class="mb-0">© geekbrains.ru</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно корзины -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title"><i class="bi bi-cart3 me-2"></i>Корзина</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <p class="text-center">Корзина пуста</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-purple" id="checkoutBtn">Оформить заказ</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Bootstrap JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
 </body>
 </html>
