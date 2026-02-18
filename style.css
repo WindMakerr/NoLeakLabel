@@ -24,7 +24,7 @@ body {
     min-height: 100vh;
 }
 
-/* ===== АНИМИРОВАННЫЙ ФОН ===== */
+/* Анимированный фон */
 #particle-canvas {
     position: fixed;
     top: 0;
@@ -35,41 +35,7 @@ body {
     pointer-events: none;
 }
 
-/* ===== ПРЕЛОАДЕР ===== */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-}
-.spinner {
-    width: 70px;
-    height: 70px;
-    border: 4px solid transparent;
-    border-top-color: var(--neon-purple);
-    border-right-color: var(--neon-blue);
-    border-bottom-color: var(--neon-pink);
-    border-left-color: var(--neon-green);
-    border-radius: 50%;
-    animation: spin 1s linear infinite, glow 1.5s ease-in-out infinite alternate;
-    box-shadow: 0 0 30px var(--neon-purple);
-}
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-@keyframes glow {
-    from { box-shadow: 0 0 10px var(--neon-purple); }
-    to { box-shadow: 0 0 40px var(--neon-blue); }
-}
-
-/* ===== НЕОНОВЫЙ ТЕКСТ ===== */
+/* Неоновый текст */
 .neon-text {
     text-shadow: 
         0 0 5px var(--neon-purple),
@@ -78,6 +44,7 @@ body {
         0 0 40px var(--neon-blue);
     animation: flicker 4s infinite alternate;
 }
+
 @keyframes flicker {
     0% { opacity: 1; text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); }
     25% { opacity: 0.9; text-shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--neon-pink), 0 0 32px var(--neon-purple); }
@@ -86,7 +53,7 @@ body {
     100% { opacity: 1; text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); }
 }
 
-/* ===== АНИМИРОВАННЫЕ КАРТОЧКИ 3D ===== */
+/* Анимированные карточки 3D */
 .card-3d {
     background: var(--card-bg);
     border: 1px solid rgba(139, 0, 255, 0.3);
@@ -101,11 +68,13 @@ body {
     overflow: hidden;
     animation: float 6s ease-in-out infinite;
 }
+
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
 }
+
 .card-3d::before {
     content: '';
     position: absolute;
@@ -120,21 +89,24 @@ body {
     z-index: -1;
     animation: borderGlow 3s linear infinite;
 }
+
 @keyframes borderGlow {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
+
 .card-3d:hover::before {
     opacity: 0.5;
 }
+
 .card-3d:hover {
     transform: rotateY(5deg) rotateX(5deg) scale(1.03);
     border-color: transparent;
     box-shadow: 0 0 50px rgba(139, 0, 255, 0.6);
 }
 
-/* ===== НЕОНОВЫЕ КНОПКИ ===== */
-.btn-neon {
+/* Неоновые кнопки */
+.btn-neon, .btn-purple {
     position: relative;
     background: transparent;
     color: var(--neon-purple);
@@ -153,12 +125,14 @@ body {
     display: inline-block;
     animation: pulse 2s infinite;
 }
+
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(139, 0, 255, 0.4); }
     70% { box-shadow: 0 0 0 10px rgba(139, 0, 255, 0); }
     100% { box-shadow: 0 0 0 0 rgba(139, 0, 255, 0); }
 }
-.btn-neon::before {
+
+.btn-neon::before, .btn-purple::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -171,14 +145,16 @@ body {
     transition: width 0.6s, height 0.6s;
     z-index: -1;
 }
-.btn-neon:hover {
+
+.btn-neon:hover, .btn-purple:hover {
     color: #fff;
     background: var(--neon-purple);
     box-shadow: 0 0 30px var(--neon-purple);
     border-color: transparent;
     animation: none;
 }
-.btn-neon:active::before {
+
+.btn-neon:active::before, .btn-purple:active::before {
     width: 400px;
     height: 400px;
     opacity: 0;
@@ -190,13 +166,14 @@ body {
     border: 2px solid var(--neon-blue);
     color: var(--neon-blue);
 }
+
 .btn-neon-outline:hover {
     background: var(--neon-blue);
     box-shadow: 0 0 30px var(--neon-blue);
     color: #000;
 }
 
-/* ===== НАВИГАЦИЯ ===== */
+/* Навигация */
 .navbar {
     background: rgba(0, 0, 0, 0.9) !important;
     backdrop-filter: blur(10px);
@@ -204,10 +181,12 @@ body {
     padding: 15px 0;
     animation: slideDown 1s ease;
 }
+
 @keyframes slideDown {
     from { transform: translateY(-100%); }
     to { transform: translateY(0); }
 }
+
 .navbar-brand {
     font-size: 2rem;
     font-weight: bold;
@@ -217,11 +196,13 @@ body {
     background-clip: text;
     animation: shine 3s infinite;
 }
+
 @keyframes shine {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
 .nav-link {
     color: #fff !important;
     margin: 0 15px;
@@ -229,6 +210,7 @@ body {
     position: relative;
     transition: color 0.3s;
 }
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -239,14 +221,16 @@ body {
     background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
     transition: width 0.3s;
 }
+
 .nav-link:hover::after {
     width: 100%;
 }
+
 .nav-link:hover {
     color: var(--neon-purple) !important;
 }
 
-/* ===== СОЦИАЛЬНЫЕ ИКОНКИ ===== */
+/* Социальные иконки */
 .social-icon {
     font-size: 2rem;
     color: #fff;
@@ -254,10 +238,12 @@ body {
     margin: 0 10px;
     animation: bounce 2s infinite;
 }
+
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
 }
+
 .social-icon:hover {
     color: var(--neon-purple);
     filter: drop-shadow(0 0 10px var(--neon-purple));
@@ -265,7 +251,7 @@ body {
     animation: none;
 }
 
-/* ===== КАРТОЧКИ ТОВАРОВ ===== */
+/* Карточки товаров */
 .product-card {
     background: rgba(20, 20, 20, 0.8);
     backdrop-filter: blur(10px);
@@ -276,6 +262,7 @@ body {
     height: 100%;
     animation: fadeInUp 1s ease;
 }
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -286,26 +273,30 @@ body {
         transform: translateY(0);
     }
 }
+
 .product-card:hover {
     transform: translateY(-15px) scale(1.02);
     border-color: var(--neon-purple);
     box-shadow: 0 20px 50px rgba(139, 0, 255, 0.5);
 }
+
 .product-img {
     width: 100%;
     height: 250px;
     object-fit: cover;
     transition: transform 0.5s;
 }
+
 .product-card:hover .product-img {
     transform: scale(1.1);
 }
+
 .product-body {
     padding: 20px;
 }
 
-/* ===== ФОРМЫ ===== */
-.neon-input {
+/* Формы */
+.neon-input, .form-control, .form-select {
     background: rgba(0, 0, 0, 0.7);
     border: 2px solid rgba(139, 0, 255, 0.3);
     border-radius: 10px;
@@ -314,24 +305,27 @@ body {
     transition: all 0.3s;
     width: 100%;
 }
-.neon-input:focus {
+
+.neon-input:focus, .form-control:focus, .form-select:focus {
     outline: none;
     border-color: var(--neon-purple);
     box-shadow: 0 0 20px rgba(139, 0, 255, 0.5);
     background: rgba(0, 0, 0, 0.9);
     animation: inputPulse 1s infinite;
 }
+
 @keyframes inputPulse {
     0% { box-shadow: 0 0 5px var(--neon-purple); }
     50% { box-shadow: 0 0 20px var(--neon-purple); }
     100% { box-shadow: 0 0 5px var(--neon-purple); }
 }
 
-/* ===== ПАРАЛЛАКС ===== */
+/* Параллакс */
 .parallax-section {
     position: relative;
     overflow: hidden;
 }
+
 .parallax-bg {
     position: absolute;
     top: 0;
@@ -343,8 +337,8 @@ body {
     z-index: -1;
 }
 
-/* ===== КОРЗИНА ===== */
-.cart-badge {
+/* Корзина */
+.cart-badge, #cartCount {
     position: absolute;
     top: -5px;
     right: -5px;
@@ -359,17 +353,19 @@ body {
     justify-content: center;
     animation: badgePulse 2s infinite;
 }
+
 @keyframes badgePulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
 
-/* ===== ЗАГОЛОВКИ ===== */
+/* Заголовки */
 h1, h2, h3 {
     position: relative;
     display: inline-block;
 }
+
 h1::after, h2::after, h3::after {
     content: '';
     position: absolute;
@@ -380,16 +376,18 @@ h1::after, h2::after, h3::after {
     background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
     animation: underlineGlow 3s linear infinite;
 }
+
 @keyframes underlineGlow {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
 
-/* ===== ТАБЫ ===== */
+/* Табы */
 .nav-tabs .nav-link {
     position: relative;
     overflow: hidden;
 }
+
 .nav-tabs .nav-link::before {
     content: '';
     position: absolute;
@@ -400,20 +398,99 @@ h1::after, h2::after, h3::after {
     background: linear-gradient(90deg, transparent, rgba(139, 0, 255, 0.2), transparent);
     transition: left 0.5s;
 }
+
 .nav-tabs .nav-link:hover::before {
     left: 100%;
 }
 
-/* ===== АНИМАЦИИ ДЛЯ AOS ===== */
-[data-aos] {
-    pointer-events: none;
-}
-[data-aos].aos-animate {
-    pointer-events: auto;
+/* Модальное окно */
+.modal-content {
+    animation: modalPop 0.3s ease;
+    background: var(--card-bg);
+    border: 2px solid var(--neon-purple);
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
+@keyframes modalPop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Анимации появления */
+.fade-in {
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-in-left {
+    animation: slideInLeft 1s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-right {
+    animation: slideInRight 1s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Утилиты */
+.text-purple { color: var(--neon-purple); }
+.bg-purple { background: var(--neon-purple); }
+.border-purple { border-color: var(--neon-purple) !important; }
+.bg-black { background: #000; }
+.bg-dark { background: var(--dark-bg); }
+
+/* Прогресс бар */
+.progress {
+    background: rgba(255,255,255,0.1);
+    height: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: var(--neon-purple);
+    animation: progressPulse 2s infinite;
+}
+
+@keyframes progressPulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
-    .btn-neon { padding: 8px 20px; font-size: 0.9rem; }
+    .btn-neon, .btn-purple { padding: 8px 20px; font-size: 0.9rem; }
+    .navbar-brand { font-size: 1.5rem; }
+    .nav-link { margin: 0 5px; }
 }
