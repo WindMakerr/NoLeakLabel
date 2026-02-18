@@ -3,23 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dota 2 Map Hack Vision - Suspender</title>
+    <title>Suspender | Dota 2 Map Hack Vision</title>
+    
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- AOS animation -->
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Hover.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-dark text-light">
 
-    <!-- Навигация (та же) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top">...</nav>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top animate__animated animate__fadeInDown">
+        <div class="container">
+            <a class="navbar-brand hvr-pulse-grow" href="index.html">
+                <img src="https://masterpiecer-images.s3.yandex.net/8f89d3528d4e11eea99abadf81d486ab:upscaled" 
+                     alt="Logo" width="50" height="50" class="d-inline-block align-text-top rounded-circle rotating-logo">
+                <span class="ms-2 fw-bold text-gradient">Suspender</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="index.html">
+                            <i class="bi bi-house-door me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="catalog.html">
+                            <i class="bi bi-grid me-1"></i>Каталог
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link nav-link-custom" href="contacts.html">
+                            <i class="bi bi-envelope me-1"></i>Контакты
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <button class="btn btn-outline-purple position-relative hvr-buzz" id="cartBtn">
+                        <i class="bi bi-cart3"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger animate__animated animate__pulse animate__infinite" 
+                              id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <div class="container mt-4">
-        <!-- Хлебные крошки -->
+    <!-- Хлебные крошки -->
+    <section class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html" class="text-purple">Главная</a></li>
@@ -27,133 +69,491 @@
                 <li class="breadcrumb-item active text-light" aria-current="page">Dota 2 Map Hack Vision</li>
             </ol>
         </nav>
+    </section>
 
+    <!-- Основная информация о товаре -->
+    <section class="container py-4">
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="product-image-wrapper">
+                    <div class="product-badge">НОВИНКА</div>
+                    <img src="https://ggcheats.shop/img/cheats/ico/melonity.png" 
+                         alt="Dota 2 Map Hack Vision" class="img-fluid product-image">
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <div class="feature-tag">Map Hack</div>
+                    <div class="feature-tag">Ward Detector</div>
+                    <div class="feature-tag">Gang Alert</div>
+                    <div class="feature-tag">Roshan Timer</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                <h1 class="text-gradient display-5">Dota 2 Map Hack Vision</h1>
+                
+                <div class="product-rating mb-3">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-half text-warning"></i>
+                    <span class="ms-2">(4.7 из 5, 87 отзывов)</span>
+                </div>
+                
+                <div class="product-short-desc mb-4">
+                    <p class="lead">
+                        <i class="bi bi-map-fill text-purple me-2"></i>
+                        Полная карта с видением противника, вардами и предупреждениями о гангах.
+                        Полный контроль над картой и полная осведомленность о передвижениях врага.
+                    </p>
+                </div>
+                
+                <div class="product-price mb-4">
+                    <div class="h1 text-gradient">2,499 ₽/год</div>
+                    <div class="text-muted">или 249 ₽/месяц</div>
+                </div>
+                
+                <div class="product-buttons mb-4">
+                    <button class="btn btn-purple btn-lg w-100 mb-2 add-to-cart" 
+                            data-product="Dota 2 Map Hack Vision" 
+                            data-price="2499">
+                        <i class="bi bi-cart-plus me-2"></i>Купить за 2,499 ₽/год
+                    </button>
+                    <button class="btn btn-outline-purple btn-lg w-100 add-to-cart-monthly" 
+                            data-product="Dota 2 Map Hack Vision" 
+                            data-price="249">
+                        <i class="bi bi-calendar me-2"></i>Подписка: 249 ₽/месяц
+                    </button>
+                </div>
+                
+                <div class="product-features">
+                    <h3>Ключевые особенности</h3>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Анти-бан защита 5/5</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Версия 4.1.3</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Windows 10/11/macOS</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>3 ГБ ОЗУ</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>DirectX 11</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>30 дней гарантии</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>8 видов видения</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Технические характеристики -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Технические характеристики</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Радиус гангов</span>
+                        <span class="text-gradient fw-bold">2000-5000</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 90%">Максимальный</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Обновление карты</span>
+                        <span class="text-gradient fw-bold">50-200 мс</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 95%">Быстрое</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Потребление ОЗУ</span>
+                        <span class="text-gradient fw-bold">40-120 МБ</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 35%">Экономно</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="250">
+                <div class="tech-spec-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Точность</span>
+                        <span class="text-gradient fw-bold">99.5-99.9%</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" style="width: 99%">Максимальная</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-responsive mt-4" data-aos="fade-up">
+            <table class="table table-dark table-bordered border-purple">
+                <thead>
+                    <tr class="bg-purple-gradient">
+                        <th>Параметр</th>
+                        <th>Минимальное</th>
+                        <th>Максимальное</th>
+                        <th>Единица</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Радиус обнаружения гангов</td>
+                        <td>2000</td>
+                        <td>5000</td>
+                        <td>игровых единиц</td>
+                    </tr>
+                    <tr>
+                        <td>Время обновления карты</td>
+                        <td>50</td>
+                        <td>200</td>
+                        <td>мс</td>
+                    </tr>
+                    <tr>
+                        <td>Потребление ОЗУ</td>
+                        <td>40</td>
+                        <td>120</td>
+                        <td>МБ</td>
+                    </tr>
+                    <tr>
+                        <td>Точность позиционирования</td>
+                        <td>99.5%</td>
+                        <td>99.9%</td>
+                        <td>точность</td>
+                    </tr>
+                    <tr>
+                        <td>Кол-во типов видения</td>
+                        <td>6</td>
+                        <td>10</td>
+                        <td>видов</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-muted text-center">*Данные актуальны для версии 4.1.3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Подробное описание -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Подробное описание</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-eye-fill fs-1 text-purple mb-3"></i>
+                    <h3>Полное видение карты</h3>
+                    <p>Отображение всех вражеских героев на карте в реальном времени. Ни один враг не останется незамеченным. Видите их перемещения еще до того, как они попадут в зону видимости.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Все вражеские герои на карте</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>История перемещений (2 минуты)</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Трассировка путей</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-brightness-alt-high-fill fs-1 text-purple mb-3"></i>
+                    <h3>Обнаружение вардов</h3>
+                    <p>Автоматическое обнаружение и отображение вражеских наблюдательных и страж-вардов. Знайте, где враг имеет обзор, и уничтожайте их варды.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Observer wards</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Sentry wards</li>
+                        <li class="mb-2"><i class="bi bi-check-lg text-purple me-2"></i>Время жизни вардов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row g-4 mt-2">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-exclamation-triangle-fill fs-1 text-purple mb-3"></i>
+                    <h3>Ганг-аларм</h3>
+                    <p>Звуковое и визуальное предупреждение при приближении врагов. Настраиваемый радиус обнаружения.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-clock-history fs-1 text-purple mb-3"></i>
+                    <h3>Рошан-таймер</h3>
+                    <p>Точный таймер респауна Рошана. Автоматический отсчет времени после убийства.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box p-4 h-100">
+                    <i class="bi bi-palette-fill fs-1 text-purple mb-3"></i>
+                    <h3>8 режимов карты</h3>
+                    <p>Различные режимы отображения: от стандартного до турнирного. Настраивайте под свой стиль игры.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Режимы карты -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Режимы карты</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Стандартный</h4>
+                    <p>Только герои противника. Минималистичное отображение для тех, кто не хочет перегружать интерфейс.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Профессиональный</h4>
+                    <p>Герои + варды + нейтралы. Полная информация для максимального контроля.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Турнирный</h4>
+                    <p>Полная информация без лишних деталей. Оптимизирован для чистой карты.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Стелс</h4>
+                    <p>Минималистичный интерфейс, который сложно заметить. Идеально для стримов.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">Аналитический</h4>
+                    <p>С историей передвижений и статистикой. Для тех, кто любит анализировать игру.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient">+3 режима</h4>
+                    <p>В PRO версии доступны дополнительные режимы с уникальными настройками.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Система предупреждений -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Система предупреждений</span>
+        </h2>
+        
         <div class="row g-4">
             <div class="col-md-6" data-aos="fade-right">
-                <div class="card bg-black border-purple p-3">
-                    <img src="https://ggcheats.shop/img/cheats/ico/melonity.png" alt="Map Hack" class="img-fluid rounded-3 product-img" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                    <p class="text-center text-muted mt-2"><em>Нажмите на изображение для увеличения</em></p>
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient mb-3"><i class="bi bi-exclamation-circle-fill me-2"></i>Ганг-аларм</h4>
+                    <p>Звуковое и визуальное предупреждение при приближении врагов. Настраиваемый радиус от 2000 до 5000 единиц.</p>
                 </div>
             </div>
+            
             <div class="col-md-6" data-aos="fade-left">
-                <h1 class="text-purple">Dota 2 Map Hack Vision</h1>
-                <p class="lead">Полная карта с видением противника, вардами и предупреждениями о гангах. Полный контроль над картой и полная осведомленность о передвижениях врага.</p>
-                <div class="p-3 bg-black rounded-3 mb-3">
-                    <h4 class="text-purple">Выберите вариант</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="yearly" value="2499" checked>
-                        <label class="form-check-label" for="yearly">
-                            Годовая подписка – <strong>2,499 руб.</strong> (экономия 33%)
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="monthly" value="249">
-                        <label class="form-check-label" for="monthly">
-                            Ежемесячная – <strong>249 руб./мес</strong>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productOption" id="trial" value="149">
-                        <label class="form-check-label" for="trial">
-                            Пробная версия (5 дней) – <strong>149 руб.</strong>
-                        </label>
-                    </div>
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient mb-3"><i class="bi bi-eye-fill me-2"></i>Вард-детектор</h4>
+                    <p>Автоматическое обнаружение установленных вардов с отображением их местоположения и времени жизни.</p>
                 </div>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-purple flex-grow-1" id="addToCartBtn"><i class="bi bi-cart-plus me-2"></i>В корзину</button>
-                    <button class="btn btn-outline-purple flex-grow-1" data-bs-toggle="modal" data-bs-target="#quickViewModal">Быстрый просмотр</button>
+            </div>
+            
+            <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient mb-3"><i class="bi bi-clock-fill me-2"></i>Рошан-таймер</h4>
+                    <p>Точный таймер респауна Рошана с автоматическим сбросом при убийстве и уведомлениями.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6" data-aos="fade-left" data-aos-delay="100">
+                <div class="feature-box p-4">
+                    <h4 class="text-gradient mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Анализ перемещений</h4>
+                    <p>Предсказание целей вражеских героев на основе их траектории движения и паттернов.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Табы -->
-        <div class="mt-5" data-aos="fade-up">
-            <ul class="nav nav-tabs nav-fill border-purple">
-                <li class="nav-item"><button class="nav-link active bg-black text-light border-purple" data-bs-toggle="tab" data-bs-target="#desc">Описание</button></li>
-                <li class="nav-item"><button class="nav-link bg-black text-light border-purple" data-bs-toggle="tab" data-bs-target="#specs">Характеристики</button></li>
-                <li class="nav-item"><button class="nav-link bg-black text-light border-purple" data-bs-toggle="tab" data-bs-target="#reviews">Отзывы</button></li>
-            </ul>
-            <div class="tab-content p-4 bg-black border border-top-0 border-purple rounded-bottom">
-                <div class="tab-pane fade show active" id="desc">
-                    <h5>Подробное описание</h5>
-                    <p>Dota 2 Map Hack Vision — это революционная система видения карты, которая предоставляет полную информацию о передвижениях противника, расположении вардов и потенциальных гангах. Ни один враг не останется незамеченным на вашей карте.</p>
-                    <p><strong>Основные возможности:</strong></p>
-                    <ul>
-                        <li>Полное отображение вражеских героев на карте в реальном времени</li>
-                        <li>Обнаружение и отображение вражеских наблюдательных и страж-вардов</li>
-                        <li>Система предупреждения о гангах с настраиваемым радиусом</li>
-                        <li>Трассировка путей передвижения вражеских героев</li>
-                        <li>Отображение зон видимости противника (FoW - Fog of War)</li>
-                        <li>Интеллектуальные уведомления о Roshan и нейтральных крипах</li>
-                        <li>Настраиваемые цветовые схемы для разных типов информации</li>
-                        <li>Миникарта с улучшенным отображением</li>
-                        <li>История передвижений вражеских героев (последние 2 минуты)</li>
-                        <li>Интеграция с игровыми событиями (Aegis взят, респаун Рошана)</li>
+    <!-- Варианты приобретения -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Варианты приобретения</span>
+        </h2>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
+                <div class="price-card p-4">
+                    <h3 class="text-gradient">Годовая</h3>
+                    <div class="display-4 mb-3">2,499 ₽</div>
+                    <p class="text-muted">Самый выгодный вариант</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Полный доступ на 365 дней</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления бесплатно</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Приоритетная поддержка</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Экономия 20%</li>
                     </ul>
-                    <h6>Режимы карты:</h6>
-                    <ol>
-                        <li><strong>Стандартный режим:</strong> Только герои противника</li>
-                        <li><strong>Профессиональный режим:</strong> Герои + варды + нейтралы</li>
-                        <li><strong>Турнирный режим:</strong> Полная информация без лишних деталей</li>
-                        <li><strong>Стелс режим:</strong> Минималистичный интерфейс</li>
-                        <li><strong>Аналитический режим:</strong> С историей передвижений и статистикой</li>
-                    </ol>
+                    <button class="btn btn-purple w-100 add-to-cart" 
+                            data-product="Dota 2 Map Hack Vision (Год)" 
+                            data-price="2499">
+                        Выбрать
+                    </button>
                 </div>
-                <div class="tab-pane fade" id="specs">
-                    <h5>Характеристики</h5>
-                    <table class="table table-dark table-bordered border-purple">
-                        <tr><th>Тип чипа</th><td>Карта с полным видением</td></tr>
-                        <tr><th>Версия</th><td>4.1.3 (обновлено 25.11.2023)</td></tr>
-                        <tr><th>Совместимость</th><td>Windows 10/11, macOS</td></tr>
-                        <tr><th>Защита от обнаружения</th><td>Уровень 5/5</td></tr>
-                        <tr><th>Требования</th><td>3 ГБ ОЗУ, DirectX 11</td></tr>
-                        <tr><th>Поддержка</th><td>24/7 в Telegram и Discord</td></tr>
-                        <tr><th>Гарантия</th><td>30 дней возврата средств</td></tr>
-                        <tr><th>Язык интерфейса</th><td>Русский, English, Deutsch</td></tr>
-                        <tr><th>Типы видения</th><td>8 видов наложения карты</td></tr>
-                    </table>
-                    <h6 class="mt-3">Технические характеристики</h6>
-                    <table class="table table-dark table-bordered border-purple">
-                        <thead><tr><th>Параметр</th><th>Мин.</th><th>Макс.</th><th>Единица</th></tr></thead>
-                        <tbody>
-                            <tr><td>Радиус обнаружения гангов</td><td>2000</td><td>5000</td><td>игровых единиц</td></tr>
-                            <tr><td>Время обновления карты</td><td>50</td><td>200</td><td>мс</td></tr>
-                            <tr><td>Потребление ОЗУ</td><td>40</td><td>120</td><td>МБ</td></tr>
-                            <tr><td>Точность позиционирования</td><td>99.5%</td><td>99.9%</td><td>точность</td></tr>
-                            <tr><td>Кол-во типов видения</td><td>6</td><td>10</td><td>видов</td></tr>
-                            <tr><td colspan="4">*Данные актуальны для версии 4.1.3</td></tr>
-                        </tbody>
-                    </table>
+            </div>
+            
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
+                <div class="price-card popular p-4">
+                    <div class="popular-badge">Популярное</div>
+                    <h3 class="text-gradient">Ежемесячная</h3>
+                    <div class="display-4 mb-3">249 ₽</div>
+                    <p class="text-muted">Гибкий вариант</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Доступ на 30 дней</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все обновления включены</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка 24/7</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Без обязательств</li>
+                    </ul>
+                    <button class="btn btn-outline-purple w-100 add-to-cart-monthly" 
+                            data-product="Dota 2 Map Hack Vision (Месяц)" 
+                            data-price="249">
+                        Выбрать
+                    </button>
                 </div>
-                <div class="tab-pane fade" id="reviews">
-                    <p>Отзывов пока нет. Будьте первым!</p>
+            </div>
+            
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="300">
+                <div class="price-card p-4">
+                    <h3 class="text-gradient">Пробная</h3>
+                    <div class="display-4 mb-3">149 ₽</div>
+                    <p class="text-muted">5 дней</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>5 дней полного доступа</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Все функции</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Поддержка в рабочее время</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-purple me-2"></i>Автоотписка</li>
+                    </ul>
+                    <button class="btn btn-purple w-100 add-to-cart-trial" 
+                            data-product="Dota 2 Map Hack Vision (Пробная)" 
+                            data-price="149">
+                        Выбрать
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Футер и модалки (аналогично) -->
-    <footer class="bg-black text-light py-4 mt-5">...</footer>
-
-    <!-- Модальное окно быстрого просмотра -->
-    <div class="modal fade" id="quickViewModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-light">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title">Быстрый просмотр</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <!-- Инструкция по установке -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5" data-aos="fade-down">
+            <span class="section-title">Инструкция по установке</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">1</div>
+                    <i class="bi bi-download fs-1 text-purple mb-3"></i>
+                    <h4>Скачайте</h4>
+                    <p>Скачайте установочный файл с нашего сайта</p>
                 </div>
-                <div class="modal-body">
-                    <img src="https://ggcheats.shop/img/cheats/ico/melonity.png" class="img-fluid rounded-3">
-                    <p class="mt-3">Dota 2 Map Hack Vision – полная карта с видением.</p>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">2</div>
+                    <i class="bi bi-play-circle fs-1 text-purple mb-3"></i>
+                    <h4>Запустите</h4>
+                    <p>Запустите установщик и следуйте инструкциям</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">3</div>
+                    <i class="bi bi-key fs-1 text-purple mb-3"></i>
+                    <h4>Введите ключ</h4>
+                    <p>Введите лицензионный ключ из полученного письма</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-card text-center p-4">
+                    <div class="step-number">4</div>
+                    <i class="bi bi-controller fs-1 text-purple mb-3"></i>
+                    <h4>Запустите Dota 2</h4>
+                    <p>Настройте параметры отображения под себя</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-black text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Suspender. Все права защищены.</p>
+                    <p class="mb-0">© geekbrains.ru</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-discord fs-4"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-envelope fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Модальное окно корзины -->
-    <div class="modal fade" id="cartModal" tabindex="-1">...</div>
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-purple">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title"><i class="bi bi-cart3 me-2 text-purple"></i>Корзина</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <p class="text-center text-muted">Корзина пуста</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-purple" id="checkoutBtn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Скрипты -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
