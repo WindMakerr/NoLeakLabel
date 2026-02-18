@@ -52,7 +52,7 @@ body {
     pointer-events: none;
 }
 
-/* Неоновый текст с эффектом мерцания */
+/* Неоновый текст */
 .neon-text {
     background: linear-gradient(135deg, #fff 0%, var(--neon-purple) 50%, var(--neon-cyan) 100%);
     -webkit-background-clip: text;
@@ -70,7 +70,7 @@ body {
     75% { text-shadow: 0 0 30px rgba(58, 134, 255, 0.8); }
 }
 
-/* 3D Карточки с параллаксом */
+/* 3D Карточки */
 .card-3d {
     background: var(--card-bg);
     border: 1px solid rgba(184, 41, 255, 0.2);
@@ -106,7 +106,7 @@ body {
     box-shadow: 0 30px 60px rgba(184, 41, 255, 0.4);
 }
 
-/* Супер-неоновые кнопки */
+/* Неоновые кнопки */
 .btn-neon, .btn-purple {
     position: relative;
     background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
@@ -174,7 +174,7 @@ body {
     box-shadow: 0 0 40px var(--neon-cyan);
 }
 
-/* Навигация с глитч-эффектом */
+/* Навигация */
 .navbar {
     background: rgba(3, 4, 5, 0.95) !important;
     backdrop-filter: blur(20px);
@@ -237,7 +237,7 @@ body {
     text-shadow: 0 0 15px var(--neon-purple);
 }
 
-/* Социальные иконки с 3D вращением */
+/* Социальные иконки */
 .social-icon {
     font-size: 2.2rem;
     color: #fff;
@@ -253,7 +253,7 @@ body {
     filter: drop-shadow(0 0 20px var(--neon-purple));
 }
 
-/* Карточки товаров с крутым эффектом */
+/* Карточки товаров */
 .product-card {
     background: var(--card-bg);
     border: 1px solid rgba(184, 41, 255, 0.2);
@@ -305,7 +305,7 @@ body {
     background: linear-gradient(to top, var(--card-bg), transparent);
 }
 
-/* Формы с киберпанк-стилем */
+/* Формы */
 .neon-input, .form-control, .form-select {
     background: rgba(20, 24, 28, 0.8);
     border: 2px solid rgba(184, 41, 255, 0.3);
@@ -326,7 +326,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Параллакс с движением */
+/* Параллакс */
 .parallax-section {
     position: relative;
     overflow: hidden;
@@ -345,7 +345,7 @@ body {
     transition: transform 0.2s ease-out;
 }
 
-/* Корзина с пульсацией */
+/* Корзина */
 .cart-badge, #cartCount {
     position: absolute;
     top: -8px;
@@ -370,7 +370,7 @@ body {
     100% { transform: scale(1); box-shadow: 0 0 20px var(--neon-purple); }
 }
 
-/* Заголовки с анимацией линии */
+/* Заголовки */
 h1, h2, h3 {
     position: relative;
     display: inline-block;
@@ -395,7 +395,7 @@ h1::after, h2::after, h3::after {
     100% { width: 120px; opacity: 1; }
 }
 
-/* Табы с крутым эффектом */
+/* Табы */
 .nav-tabs {
     border-bottom: 2px solid rgba(184, 41, 255, 0.3);
     gap: 10px;
@@ -433,7 +433,7 @@ h1::after, h2::after, h3::after {
     left: 100%;
 }
 
-/* Модальное окно с попапом */
+/* Модальное окно */
 .modal-content {
     animation: modalSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     background: var(--card-bg);
@@ -451,16 +451,6 @@ h1::after, h2::after, h3::after {
         transform: translateY(0) scale(1);
         opacity: 1;
     }
-}
-
-.modal-header {
-    border-bottom: 1px solid rgba(184, 41, 255, 0.3);
-    padding: 25px 30px;
-}
-
-.modal-footer {
-    border-top: 1px solid rgba(184, 41, 255, 0.3);
-    padding: 25px 30px;
 }
 
 /* Анимации появления */
@@ -510,21 +500,6 @@ h1::after, h2::after, h3::after {
         transform: translateX(0) rotate(0);
         opacity: 1;
         filter: blur(0);
-    }
-}
-
-.zoom-in {
-    animation: zoomInRotate 0.8s ease;
-}
-
-@keyframes zoomInRotate {
-    from {
-        transform: scale(0) rotate(-180deg);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1) rotate(0);
-        opacity: 1;
     }
 }
 
