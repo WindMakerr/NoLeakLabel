@@ -1,40 +1,51 @@
-// Инициализация AOS
+// Инициализация AOS с расширенными настройками
 AOS.init({
-    duration: 800,
-    once: true,
-    offset: 100
+    duration: 1200,
+    once: false,
+    mirror: true,
+    offset: 120,
+    easing: 'ease-in-out-cubic',
+    delay: 100
 });
 
-// Корзина (имитация)
+// Корзина
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function updateCartCount() {
     const count = cart.reduce((acc, item) => acc + item.quantity, 0);
-    document.getElementById('cartCount').textContent = count;
+    const cartCountElem = document.getElementById('cartCount');
+    if (cartCountElem) {
+        cartCountElem.textContent = count;
+        cartCountElem.style.animation = 'none';
+        cartCountElem.offsetHeight;
+        cartCountElem.style.animation = 'badgePulse 0.3s ease';
+    }
 }
 
 function renderCartModal() {
     const cartContainer = document.getElementById('cartItems');
+    if (!cartContainer) return;
+    
     if (cart.length === 0) {
-        cartContainer.innerHTML = '<p class="text-center">Корзина пуста</p>';
+        cartContainer.innerHTML = '<p class="text-center"><i class="bi bi-cart-x" style="font-size: 3rem; color: var(--neon-purple);"></i><br>Корзина пуста</p>';
     } else {
         let html = '';
         cart.forEach((item, index) => {
             html += `
-                <div class="d-flex justify-content-between align-items-center mb-2 border-bottom border-secondary pb-2">
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary pb-2 animate__animated animate__fadeIn" style="animation: slideIn 0.3s ease;">
                     <div>
-                        <strong>${item.name}</strong><br>
+                        <strong class="text-purple">${item.name}</strong><br>
                         <small>${item.option} - ${item.price} руб.</small>
-                        <span> x${item.quantity}</span>
+                        <span class="badge bg-purple ms-2">x${item.quantity}</span>
                     </div>
-                    <div>
-                        <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})"><i class="bi bi-trash"></i></button>
-                    </div>
+                    <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
             `;
         });
         const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-        html += `<h5 class="mt-3">Итого: ${total} руб.</h5>`;
+        html += `<h5 class="mt-3 text-end text-purple">Итого: ${total} руб.</h5>`;
         cartContainer.innerHTML = html;
     }
 }
@@ -49,11 +60,9 @@ function addToCart(name, price, option) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     renderCartModal();
-
-    // Показать уведомление
-    const toast = new bootstrap.Toast(document.createElement('div'), { delay: 2000 });
-    // Простая имитация уведомления
-    alert('Товар добавлен в корзину!');
+    
+    // Кастомное уведомление
+    showNotification('Товар добавлен в корзину!', 'success');
 }
 
 function removeFromCart(index) {
@@ -61,6 +70,21 @@ function removeFromCart(index) {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     renderCartModal();
+    showNotification('Товар удален из корзины', 'warning');
+}
+
+// Кастомное уведомление
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} position-fixed top-0 end-0 m-3 animate__animated animate__fadeInRight`;
+    notification.style.zIndex = '9999';
+    notification.innerHTML = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('animate__fadeOutRight');
+        setTimeout(() => notification.remove(), 500);
+    }, 3000);
 }
 
 // Инициализация корзины
@@ -69,137 +93,295 @@ updateCartCount();
 // Обработчик кнопки корзины
 document.getElementById('cartBtn')?.addEventListener('click', () => {
     renderCartModal();
-    new bootstrap.Modal(document.getElementById('cartModal')).show();
+    const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+    modal.show();
 });
 
 // Обработчик добавления в корзину на странице товара
-document.getElementById('addToCartBtn')?.addEventListener('click', () => {
-    const selected = document.querySelector('input[name="productOption"]:checked');
-    if (!selected) return;
-    const price = parseInt(selected.value);
-    const option = selected.nextElementSibling.textContent.trim();
-    const name = document.querySelector('h1').textContent;
-    addToCart(name, price, option);
+document.querySelectorAll('#addToCartBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const selected = document.querySelector('input[name="productOption"]:checked');
+        if (!selected) {
+            showNotification('Выберите вариант товара', 'warning');
+            return;
+        }
+        const price = parseInt(selected.value);
+        const option = selected.nextElementSibling.textContent.trim();
+        const name = document.querySelector('h1').textContent;
+        addToCart(name, price, option);
+        
+        // Анимация кнопки
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => this.style.transform = 'scale(1)', 200);
+    });
 });
 
 // Обработчик оформления заказа
 document.getElementById('checkoutBtn')?.addEventListener('click', () => {
     if (cart.length === 0) {
-        alert('Корзина пуста');
+        showNotification('Корзина пуста', 'warning');
         return;
     }
-    alert('Заказ оформлен! (имитация)');
+    
+    // Анимация оформления
+    showNotification('Заказ оформлен! С вами свяжутся.', 'success');
+    
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
 });
 
-// Загрузка популярных товаров на главную
+// Анимация частиц Three.js
+function initParticles() {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 2000;
+    const posArray = new Float32Array(particlesCount * 3);
+    const colorArray = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i += 3) {
+        posArray[i] = (Math.random() - 0.5) * 20;
+        posArray[i + 1] = (Math.random() - 0.5) * 20;
+        posArray[i + 2] = (Math.random() - 0.5) * 20;
+        
+        colorArray[i] = Math.random() * 0.5 + 0.5;
+        colorArray[i + 1] = Math.random() * 0.3;
+        colorArray[i + 2] = Math.random() * 0.8 + 0.2;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({ 
+        size: 0.03,
+        vertexColors: true,
+        transparent: true,
+        blending: THREE.AdditiveBlending
+    });
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    camera.position.z = 5;
+
+    function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        particlesMesh.rotation.y += 0.0002;
+        particlesMesh.rotation.x += 0.0001;
+        renderer.render(scene, camera);
+    }
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+}
+
+// Параллакс эффект
+document.addEventListener('mousemove', (e) => {
+    const parallaxElements = document.querySelectorAll('.parallax-bg');
+    parallaxElements.forEach(el => {
+        const speed = 0.05;
+        const x = (window.innerWidth - e.pageX * speed) / 100;
+        const y = (window.innerHeight - e.pageY * speed) / 100;
+        el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+    });
+});
+
+// Анимация скролла
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelectorAll('.parallax-section');
+    parallax.forEach(el => {
+        const speed = 0.5;
+        el.style.backgroundPositionY = `${scrolled * speed}px`;
+    });
+});
+
+// Прелоадер
+window.addEventListener('load', () => {
+    initParticles();
+    
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    }, 1000);
+});
+
+// Популярные товары
 const popularProducts = [
-    { name: 'ESP Hack Ultimate', img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', price: 2999, link: 'product.html' },
-    { name: 'Auto Last Hit Pro', img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', price: 1999, link: 'product1.html' },
-    { name: 'Map Hack Vision', img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', price: 2499, link: 'product2.html' },
-    { name: 'Script Pack Premium', img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', price: 3499, link: 'product3.html' }
+    { 
+        name: 'ESP Hack Ultimate', 
+        img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', 
+        price: 2999, 
+        link: 'product.html',
+        description: 'Полный ESP с отображением врагов через стены'
+    },
+    { 
+        name: 'Auto Last Hit Pro', 
+        img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', 
+        price: 1999, 
+        link: 'product1.html',
+        description: 'Автоматический ласт хит с точностью 99.8%'
+    },
+    { 
+        name: 'Map Hack Vision', 
+        img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', 
+        price: 2499, 
+        link: 'product2.html',
+        description: 'Полное видение карты и вардов'
+    },
+    { 
+        name: 'Script Pack Premium', 
+        img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', 
+        price: 3499, 
+        link: 'product3.html',
+        description: '400+ скриптов для всех героев'
+    }
 ];
 
 if (document.getElementById('popular-products')) {
     const container = document.getElementById('popular-products');
-    popularProducts.forEach(prod => {
-        container.innerHTML += `
-            <div class="col-md-3">
-                <div class="card bg-black border-purple h-100 catalog-item">
-                    <img src="${prod.img}" class="card-img-top" alt="${prod.name}" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">${prod.name}</h5>
-                        <p class="card-text text-purple fw-bold">${prod.price} руб./год</p>
-                        <a href="${prod.link}" class="btn btn-outline-purple w-100">Подробнее</a>
-                    </div>
+    popularProducts.forEach((prod, index) => {
+        const card = document.createElement('div');
+        card.className = 'col-md-3';
+        card.setAttribute('data-aos', 'fade-up');
+        card.setAttribute('data-aos-delay', index * 100);
+        card.innerHTML = `
+            <div class="product-card">
+                <img src="${prod.img}" class="product-img" alt="${prod.name}" loading="lazy">
+                <div class="product-body">
+                    <h5 class="text-purple">${prod.name}</h5>
+                    <p class="text-muted small">${prod.description}</p>
+                    <p class="text-purple fw-bold fs-4">${prod.price} ₽</p>
+                    <a href="${prod.link}" class="btn-neon w-100 text-center" style="padding: 8px;">Подробнее</a>
                 </div>
             </div>
         `;
+        container.appendChild(card);
     });
 }
 
-// Загрузка каталога (фильтрация)
+// Каталог с фильтрацией
 const allProducts = [
-    { name: 'ESP Hack Ultimate', type: 'esp', price: 2999, img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', link: 'product.html' },
-    { name: 'Auto Last Hit Pro', type: 'lasthit', price: 1999, img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', link: 'product1.html' },
-    { name: 'Map Hack Vision', type: 'map', price: 2499, img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', link: 'product2.html' },
-    { name: 'Script Pack Premium', type: 'script', price: 3499, img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', link: 'product3.html' }
+    { name: 'ESP Hack Ultimate', type: 'esp', price: 2999, img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', link: 'product.html', description: 'Полный ESP' },
+    { name: 'Auto Last Hit Pro', type: 'lasthit', price: 1999, img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', link: 'product1.html', description: 'Авто ласт хит' },
+    { name: 'Map Hack Vision', type: 'map', price: 2499, img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', link: 'product2.html', description: 'Map hack' },
+    { name: 'Script Pack Premium', type: 'script', price: 3499, img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', link: 'product3.html', description: 'Скрипты' }
 ];
 
 function renderCatalog(filtered) {
     const container = document.getElementById('catalog-items');
     if (!container) return;
+    
     container.innerHTML = '';
-    filtered.forEach(prod => {
-        container.innerHTML += `
-            <div class="col-md-6 col-lg-4">
-                <div class="card bg-black border-purple h-100 catalog-item">
-                    <img src="${prod.img}" class="card-img-top" alt="${prod.name}" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">${prod.name}</h5>
-                        <p class="card-text text-purple fw-bold">${prod.price} руб./год</p>
-                        <a href="${prod.link}" class="btn btn-outline-purple w-100">Подробнее</a>
-                    </div>
+    
+    if (filtered.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center"><p class="fs-3">Товары не найдены</p></div>';
+        return;
+    }
+    
+    filtered.forEach((prod, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 col-lg-4';
+        col.setAttribute('data-aos', 'fade-up');
+        col.setAttribute('data-aos-delay', index * 50);
+        col.innerHTML = `
+            <div class="product-card">
+                <img src="${prod.img}" class="product-img" alt="${prod.name}" loading="lazy">
+                <div class="product-body">
+                    <h5 class="text-purple">${prod.name}</h5>
+                    <p class="text-muted small">${prod.description}</p>
+                    <p class="text-purple fw-bold fs-4">${prod.price} ₽</p>
+                    <a href="${prod.link}" class="btn-neon w-100 text-center" style="padding: 8px;">Подробнее</a>
                 </div>
             </div>
         `;
+        container.appendChild(col);
     });
 }
 
 if (document.getElementById('catalog-items')) {
     renderCatalog(allProducts);
 
-    document.getElementById('applyFilter').addEventListener('click', () => {
-        const priceMax = parseInt(document.getElementById('priceRange').value) || 4000;
-        const type = document.getElementById('typeFilter').value;
+    document.getElementById('applyFilter')?.addEventListener('click', () => {
+        const priceMax = parseInt(document.getElementById('priceRange')?.value) || 4000;
+        const type = document.getElementById('typeFilter')?.value || 'all';
+        
         const filtered = allProducts.filter(p => {
             return p.price <= priceMax && (type === 'all' || p.type === type);
         });
+        
         renderCatalog(filtered);
+        
+        // Анимация кнопки
+        const btn = document.getElementById('applyFilter');
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => btn.style.transform = 'scale(1)', 200);
     });
 }
 
-// Валидация формы контактов
+// Валидация формы контактов с анимацией
 document.getElementById('contactForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Сообщение отправлено! (имитация)');
-    e.target.reset();
+    
+    // Анимация отправки
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Отправка...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        showNotification('Сообщение отправлено!', 'success');
+        e.target.reset();
+        btn.innerHTML = 'Отправить';
+        btn.disabled = false;
+    }, 1500);
 });
 
-// Инициализация слайдера цены (можно добавить отображение значения)
+// Анимация ползунка цены
 const priceRange = document.getElementById('priceRange');
+const priceDisplay = document.createElement('span');
 if (priceRange) {
     priceRange.addEventListener('input', (e) => {
-        // можно показать текущее значение
+        const value = e.target.value;
+        if (!priceDisplay.parentNode) {
+            priceDisplay.className = 'badge bg-purple position-absolute';
+            priceDisplay.style.left = `${(value / 4000) * 100}%`;
+            priceRange.parentNode.appendChild(priceDisplay);
+        }
+        priceDisplay.textContent = `${value} ₽`;
+        priceDisplay.style.left = `${(value / 4000) * 100}%`;
     });
 }
-// Простая сцена с плавающими частицами
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
 
-const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1000;
-const posArray = new Float32Array(particlesCount * 3);
-for(let i = 0; i < particlesCount * 3; i += 3) {
-    posArray[i] = (Math.random() - 0.5) * 10;
-    posArray[i+1] = (Math.random() - 0.5) * 10;
-    posArray[i+2] = (Math.random() - 0.5) * 10;
-}
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0x8B00FF });
-const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particlesMesh);
+// Анимация при наведении на карточки
+document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.animation = 'pulse 1s infinite';
+    });
+    card.addEventListener('mouseleave', function() {
+        this.style.animation = '';
+    });
+});
 
-camera.position.z = 3;
-
-function animate() {
-    requestAnimationFrame(animate);
-    particlesMesh.rotation.y += 0.0005;
-    renderer.render(scene, camera);
-}
-animate();
+// Инициализация всех анимаций
+document.addEventListener('DOMContentLoaded', () => {
+    // Добавляем класс animate__animated для элементов
+    document.querySelectorAll('h1, h2, h3').forEach(el => {
+        el.classList.add('animate__animated', 'animate__fadeIn');
+    });
+});
