@@ -3,170 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suspender – Dota 2 читы</title>
+    <title>Suspender – Киберпанк читы для Dota 2</title>
     
-    <!-- Критический CSS встроен -->
-    <style>
-        /* Базовые стили для быстрого отображения */
-        :root {
-            --neon-purple: #8B00FF;
-            --neon-blue: #00FFFF;
-        }
-        body { background: #0a0a0a; color: #f0f0f0; margin: 0; font-family: 'Segoe UI', sans-serif; }
-        .text-purple { color: var(--neon-purple); }
-        .btn-neon {
-            background: transparent; color: var(--neon-purple); border: 2px solid var(--neon-purple);
-            padding: 10px 25px; border-radius: 50px; text-decoration: none; display: inline-block;
-        }
-        .navbar { background: rgba(0,0,0,0.9); padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        .d-flex { display: flex; } .justify-content-between { justify-content: space-between; }
-        .align-items-center { align-items: center; }
-        #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-    </style>
-    
-    <!-- Bootstrap и остальные стили загружаем асинхронно -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-    </noscript>
-    
-    <!-- Bootstrap Icons (оптимизировано) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Убираем прелоадер - он замедляет загрузку -->
-    
-    <canvas id="particle-canvas"></canvas>
-
     <!-- Навигация -->
-    <nav class="navbar">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="index.html" class="text-purple" style="font-size: 1.8rem; text-decoration: none; font-weight: bold;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
                 <i class="bi bi-robot"></i> Suspender
             </a>
-            <div>
-                <a href="index.html" class="btn-neon" style="margin-right: 10px;">Главная</a>
-                <a href="catalog.html" class="btn-neon" style="margin-right: 10px;">Каталог</a>
-                <a href="contacts.html" class="btn-neon">Контакты</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.html">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">Контакты</a>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-light position-relative ms-3" id="cartBtn">
+                    <i class="bi bi-cart3"></i>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero секция (упрощена для скорости) -->
-    <section style="min-height: 100vh; display: flex; align-items: center; padding-top: 80px;">
+    <!-- Анимированный фон -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Hero секция -->
+    <section class="parallax-section" style="min-height: 100vh; display: flex; align-items: center; padding-top: 80px;">
+        <div class="parallax-bg" id="parallax-bg"></div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 style="font-size: 4rem; color: var(--neon-purple);">Suspender</h1>
-                    <p style="font-size: 1.5rem;">Продвинутые читы для Dota 2</p>
-                    <a href="catalog.html" class="btn-neon">Купить читы</a>
+            <div class="row align-items-center">
+                <div class="col-lg-6 slide-in-left">
+                    <h1 class="display-1 fw-bold neon-text">SUSPENDER</h1>
+                    <p class="lead mt-4" style="color: #ccc; font-size: 1.5rem;">
+                        <i class="bi bi-lightning-charge-fill text-purple"></i>
+                        Продвинутые читы для Dota 2 с защитой от обнаружения
+                    </p>
+                    <div class="mt-5">
+                        <a href="catalog.html" class="btn-neon me-3">
+                            <i class="bi bi-cart-check"></i> Купить читы
+                        </a>
+                        <a href="#popular" class="btn-neon btn-neon-outline">
+                            <i class="bi bi-grid"></i> Смотреть каталог
+                        </a>
+                    </div>
+                    
+                    <!-- Социальные иконки -->
+                    <div class="mt-5">
+                        <a href="#" class="social-icon"><i class="bi bi-telegram"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 slide-in-right">
+                    <div class="card-3d text-center">
+                        <i class="bi bi-shield-shaded" style="font-size: 8rem; color: var(--neon-purple);"></i>
+                        <h3 class="mt-3">Анти-бан защита 5/5</h3>
+                        <p>Ваш аккаунт в полной безопасности</p>
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <span class="badge bg-purple">Undetected</span>
+                            <span class="badge bg-purple">24/7 Support</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Популярные товары (упрощенно) -->
+    <!-- Преимущества -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-purple text-center mb-4">Популярные товары</h2>
+            <h2 class="text-center neon-text mb-5" data-aos="fade-down">
+                <i class="bi bi-stars"></i> Почему выбирают нас
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-3d text-center h-100">
+                        <i class="bi bi-shield-shaded fs-1 text-purple"></i>
+                        <h4>Анти-бан защита</h4>
+                        <p>Уровень защиты 5/5 – ваш аккаунт в безопасности</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-purple" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-3d text-center h-100">
+                        <i class="bi bi-arrow-repeat fs-1 text-purple"></i>
+                        <h4>Мгновенные обновления</h4>
+                        <p>После каждого патча Dota 2 в течение 24 часов</p>
+                        <div class="spinner-border text-purple mt-3" style="width: 2rem; height: 2rem;"></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-3d text-center h-100">
+                        <i class="bi bi-headset fs-1 text-purple"></i>
+                        <h4>Поддержка 24/7</h4>
+                        <p>Telegram, Discord – всегда на связи</p>
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                            <span class="badge bg-purple">Live Chat</span>
+                            <span class="badge bg-purple">Fast Response</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные товары -->
+    <section id="popular" class="py-5">
+        <div class="container">
+            <h2 class="text-center neon-text mb-5" data-aos="fade-down">
+                <i class="bi bi-fire"></i> Популярные товары
+            </h2>
             <div class="row g-4" id="popular-products"></div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="catalog.html" class="btn-neon">
+                    <i class="bi bi-grid"></i> Смотреть все товары
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Статистика -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="flip-left">
+                    <div class="card-3d text-center">
+                        <i class="bi bi-people fs-1 text-purple"></i>
+                        <h2 class="neon-text counter" data-target="5000">5000+</h2>
+                        <p>Довольных клиентов</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="100">
+                    <div class="card-3d text-center">
+                        <i class="bi bi-shield-check fs-1 text-purple"></i>
+                        <h2 class="neon-text counter" data-target="100">100%</h2>
+                        <p>защита</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="200">
+                    <div class="card-3d text-center">
+                        <i class="bi bi-clock-history fs-1 text-purple"></i>
+                        <h2 class="neon-text counter" data-target="24">24/7</h2>
+                        <p>поддержка</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="300">
+                    <div class="card-3d text-center">
+                        <i class="bi bi-gem fs-1 text-purple"></i>
+                        <h2 class="neon-text counter" data-target="1000">1000+</h2>
+                        <p>обновлений</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center neon-text mb-5" data-aos="fade-down">
+                <i class="bi bi-chat-quote"></i> Отзывы клиентов
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-right">
+                    <div class="card-3d">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle me-3 bg-purple d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">U1</span>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">ProGamer123</h5>
+                                <small class="text-purple">5,000+ часов в Dota</small>
+                            </div>
+                        </div>
+                        <p class="fst-italic">"ESP Hack просто имба! Поднял MMR на 1000 за месяц. Работает без банов уже полгода."</p>
+                        <div class="text-purple">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="card-3d">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle me-3 bg-purple d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">U2</span>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">LastHitMaster</h5>
+                                <small class="text-purple">Керри игрок</small>
+                            </div>
+                        </div>
+                        <p class="fst-italic">"Auto Last Hit Pro - лучшая покупка. 800 ластхитов за 30 минут, это реально!"</p>
+                        <div class="text-purple">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left">
+                    <div class="card-3d">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle me-3 bg-purple d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <span class="fw-bold">U3</span>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">SupportGod</h5>
+                                <small class="text-purple">Саппорт 5 позиция</small>
+                            </div>
+                        </div>
+                        <p class="fst-italic">"Map Hack Vision спас кучу тиммейтов. Вижу все ганги заранее. Маст хэв для саппорта!"</p>
+                        <div class="text-purple">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Футер -->
-    <footer class="py-4 text-center" style="background: #000;">
-        <p>© 2025 Suspender</p>
+    <footer class="py-4" style="background: rgba(0,0,0,0.9); border-top: 1px solid rgba(139,0,255,0.3);">
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="bi bi-c-circle text-purple"></i> 
+                2025 Suspender. Все права защищены.
+            </p>
+            <p class="mb-0">
+                Сделано с <i class="bi bi-heart-fill text-danger"></i> для Dota 2 комьюнити
+            </p>
+        </div>
     </footer>
 
-    <!-- Модалка корзины -->
+    <!-- Модальное окно корзины -->
     <div class="modal fade" id="cartModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content" style="background: #111;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Корзина</h5>
+                    <h5 class="modal-title">
+                        <i class="bi bi-cart3 me-2 text-purple"></i>
+                        Корзина
+                    </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body" id="cartItems">Корзина пуста</div>
+                <div class="modal-body" id="cartItems">
+                    <p class="text-center">Корзина пуста</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn-neon" id="checkoutBtn">
+                        <i class="bi bi-check2-circle"></i> Оформить заказ
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Скрипты загружаем с defer -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-    
-    <!-- Оптимизированный скрипт -->
-    <script>
-        // Минимальный JS для быстрой загрузки
-        document.addEventListener('DOMContentLoaded', function() {
-            // Упрощенная инициализация корзины
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
-            // Популярные товары
-            const products = [
-                { name: 'ESP Hack Ultimate', price: 2999, img: 'https://via.placeholder.com/300/8B00FF/ffffff?text=ESP', link: 'product.html' },
-                { name: 'Auto Last Hit Pro', price: 1999, img: 'https://via.placeholder.com/300/8B00FF/ffffff?text=LAST+HIT', link: 'product1.html' },
-                { name: 'Map Hack Vision', price: 2499, img: 'https://via.placeholder.com/300/8B00FF/ffffff?text=MAP+HACK', link: 'product2.html' },
-                { name: 'Script Pack Premium', price: 3499, img: 'https://via.placeholder.com/300/8B00FF/ffffff?text=SCRIPTS', link: 'product3.html' }
-            ];
-            
-            const container = document.getElementById('popular-products');
-            if(container) {
-                container.innerHTML = products.map(p => `
-                    <div class="col-md-3">
-                        <div class="card" style="background: #111; border: 1px solid #8B00FF; border-radius: 10px; overflow: hidden;">
-                            <img src="${p.img}" style="width: 100%; height: 200px; object-fit: cover;">
-                            <div class="p-3">
-                                <h5 class="text-purple">${p.name}</h5>
-                                <p class="fw-bold">${p.price} ₽</p>
-                                <a href="${p.link}" class="btn-neon w-100 text-center">Подробнее</a>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            // Простая анимация частиц (если нужна)
-            if(window.THREE && document.getElementById('particle-canvas')) {
-                initSimpleParticles();
-            }
-        });
-        
-        function initSimpleParticles() {
-            // Упрощенная версия частиц для производительности
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('particle-canvas'), alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            
-            const geometry = new THREE.BufferGeometry();
-            const count = 1000; // Меньше частиц для скорости
-            const positions = new Float32Array(count * 3);
-            
-            for(let i = 0; i < count * 3; i += 3) {
-                positions[i] = (Math.random() - 0.5) * 20;
-                positions[i+1] = (Math.random() - 0.5) * 20;
-                positions[i+2] = (Math.random() - 0.5) * 20;
-            }
-            
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            const material = new THREE.PointsMaterial({ color: 0x8B00FF, size: 0.02 });
-            const particles = new THREE.Points(geometry, material);
-            scene.add(particles);
-            
-            camera.position.z = 10;
-            
-            function animate() {
-                requestAnimationFrame(animate);
-                particles.rotation.y += 0.0005;
-                renderer.render(scene, camera);
-            }
-            animate();
-        }
-    </script>
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
