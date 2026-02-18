@@ -1,311 +1,455 @@
-// Инициализация AOS
+// Инициализация AOS (Animate On Scroll)
 AOS.init({
     duration: 1000,
-    once: false,
-    mirror: true,
-    offset: 120,
-    easing: 'ease-out-cubic',
-    delay: 100
+    once: true,
+    mirror: false,
+    offset: 50
 });
 
-// ========== КОРЗИНА ==========
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function updateCartCount() {
-    const count = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
-    const cartCountElem = document.getElementById('cartCount');
-    if (cartCountElem) {
-        cartCountElem.textContent = count;
-        cartCountElem.style.animation = 'none';
-        cartCountElem.offsetHeight;
-        cartCountElem.style.animation = 'cartPulse 0.5s';
-    }
-}
-
-function renderCartModal() {
-    const cartContainer = document.getElementById('cartItems');
-    if (!cartContainer) return;
-    
-    if (cart.length === 0) {
-        cartContainer.innerHTML = '<div class="text-center p-5"><i class="bi bi-cart-x fs-1 text-purple"></i><p class="mt-3">Корзина пуста</p></div>';
-    } else {
-        let html = '';
-        cart.forEach((item, index) => {
-            html += `
-                <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-black rounded-3 border border-purple" style="animation: fadeInUp 0.5s ${index * 0.1}s both;">
-                    <div>
-                        <strong class="text-purple fs-5">${item.name}</strong><br>
-                        <small class="text-muted">${item.option || ''}</small>
-                        <span class="badge bg-purple ms-2">${item.price} ₽</span>
-                        <span class="badge" style="background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));">x${item.quantity || 1}</span>
-                    </div>
-                    <button class="btn btn-outline-danger btn-sm rounded-circle" onclick="removeFromCart(${index})">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            `;
-        });
-        const total = cart.reduce((acc, item) => acc + ((item.price || 0) * (item.quantity || 1)), 0);
-        html += `<h4 class="mt-4 text-end text-purple">Итого: ${total} ₽ <span class="text-cyan">(${cart.length} товаров)</span></h4>`;
-        cartContainer.innerHTML = html;
-    }
-}
-
-function addToCart(name, price, option) {
-    if (!name || !price) return;
-    
-    const existing = cart.find(item => item.name === name && item.option === option);
-    if (existing) {
-        existing.quantity = (existing.quantity || 1) + 1;
-    } else {
-        cart.push({ name, price, option, quantity: 1 });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCartModal();
-    showNotification('✨ Товар добавлен в корзину!', 'success');
-}
-
-window.addToCart = addToCart;
-
-function removeFromCart(index) {
-    if (index >= 0 && index < cart.length) {
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        renderCartModal();
-        showNotification('🗑️ Товар удален из корзины', 'warning');
-    }
-}
-
-window.removeFromCart = removeFromCart;
-
-// Уведомления
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `toast align-items-center border-0 show position-fixed top-0 end-0 m-4`;
-    notification.setAttribute('role', 'alert');
-    notification.style.cssText = 'z-index: 9999; background: linear-gradient(135deg, #8B00FF, #FF36B0); color: white; border-radius: 50px; padding: 15px 30px; box-shadow: 0 10px 40px rgba(139,0,255,0.5); animation: slideInRight 0.5s, fadeOut 0.5s 2.5s forwards;';
-    notification.innerHTML = `
-        <div class="d-flex align-items-center">
-            <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} fs-4 me-3"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => notification.remove(), 3000);
-}
-
-// Инициализация корзины
-updateCartCount();
-
-// Обработчик кнопки корзины
-document.getElementById('cartBtn')?.addEventListener('click', () => {
-    renderCartModal();
-    const modal = new bootstrap.Modal(document.getElementById('cartModal'));
-    modal.show();
-    const btn = document.getElementById('cartBtn');
-    btn.style.transform = 'scale(1.2)';
-    setTimeout(() => btn.style.transform = 'scale(1)', 200);
-});
-
-// Обработчик добавления в корзину
-document.querySelectorAll('#addToCartBtn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const selected = document.querySelector('input[name="productOption"]:checked');
-        if (!selected) {
-            showNotification('❌ Выберите вариант товара', 'warning');
-            return;
-        }
-        const price = parseInt(selected.value);
-        const option = selected.nextElementSibling?.textContent?.trim() || '';
-        const name = document.querySelector('h1')?.textContent || 'Товар';
-        addToCart(name, price, option);
-        
-        this.style.transform = 'scale(0.9) rotate(-5deg)';
-        setTimeout(() => this.style.transform = 'scale(1.1) rotate(5deg)', 100);
-        setTimeout(() => this.style.transform = 'scale(1) rotate(0)', 200);
-    });
-});
-
-// Оформление заказа
-document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-    if (cart.length === 0) {
-        showNotification('❌ Корзина пуста', 'warning');
-        return;
-    }
-    
-    showNotification('✅ Заказ оформлен! С вами свяжутся.', 'success');
-    
-    cart = [];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    
-    const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
-    if (modal) modal.hide();
-});
-
-// ========== АНИМАЦИЯ ЧАСТИЦ ==========
-function initParticles() {
-    const canvas = document.getElementById('particle-canvas');
-    if (!canvas || !window.THREE) return;
-    
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const particlesCount = 3000;
-    const positions = new Float32Array(particlesCount * 3);
-    const colors = new Float32Array(particlesCount * 3);
-
-    const color1 = new THREE.Color(0x8B00FF);
-    const color2 = new THREE.Color(0x00FFFF);
-
-    for (let i = 0; i < particlesCount; i++) {
-        const radius = 10;
-        const angle = (i / particlesCount) * Math.PI * 2;
-        const height = (Math.random() - 0.5) * 15;
-        
-        positions[i*3] = Math.cos(angle) * radius + (Math.random() - 0.5) * 3;
-        positions[i*3+1] = height + (Math.random() - 0.5) * 3;
-        positions[i*3+2] = Math.sin(angle) * radius + (Math.random() - 0.5) * 3;
-
-        const mixColor = color1.clone().lerp(color2, Math.random());
-        colors[i*3] = mixColor.r;
-        colors[i*3+1] = mixColor.g;
-        colors[i*3+2] = mixColor.b;
-    }
-
-    const particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.08,
-        vertexColors: true,
-        transparent: true,
-        blending: THREE.AdditiveBlending
-    });
-
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 18;
-
-    function animate() {
-        requestAnimationFrame(animate);
-        particlesMesh.rotation.y += 0.0003;
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-}
-
-// ========== ПАРАЛЛАКС ==========
-document.addEventListener('mousemove', (e) => {
-    document.querySelectorAll('.card-3d, .product-card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const cardCenterX = rect.left + rect.width / 2;
-        const cardCenterY = rect.top + rect.height / 2;
-        const deltaX = (e.clientX - cardCenterX) / 25;
-        const deltaY = (e.clientY - cardCenterY) / 25;
-        
-        card.style.transform = `perspective(1000px) rotateY(${deltaX}deg) rotateX(${-deltaY}deg)`;
-    });
-});
-
-// ========== АНИМАЦИЯ СЧЕТЧИКОВ ==========
-function animateCounters() {
-    document.querySelectorAll('.counter').forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        let current = 0;
-        const increment = target / 50;
-        
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                counter.textContent = Math.floor(current) + '+';
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target + '+';
-            }
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    updateCounter();
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-        
-        observer.observe(counter);
-    });
-}
-
-// ========== ТОВАРЫ ДЛЯ ГЛАВНОЙ ==========
-const popularProducts = [
-    { 
-        name: 'ESP Hack Ultimate', 
-        img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', 
-        price: 2999, 
-        link: 'product.html',
-        description: 'Полный ESP с отображением врагов'
+// Данные товаров
+const products = [
+    {
+        id: 1,
+        name: "Dota 2 ESP Hack Ultimate",
+        description: "Полный набор функций ESP для Dota 2 с отображением врагов через стены, здоровьем и маной противников.",
+        price: 2999,
+        monthlyPrice: 299,
+        image: "https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13",
+        link: "product.html",
+        rating: 4.9,
+        reviews: 128
     },
-    { 
-        name: 'Auto Last Hit Pro', 
-        img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', 
-        price: 1999, 
-        link: 'product1.html',
-        description: 'Автоматический ласт хит 99.8%'
+    {
+        id: 2,
+        name: "Dota 2 Auto Last Hit Pro",
+        description: "Автоматический ласт хит и денай для максимального фарма с настройкой под любого героя.",
+        price: 1999,
+        monthlyPrice: 199,
+        image: "https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13",
+        link: "product1.html",
+        rating: 4.8,
+        reviews: 95
     },
-    { 
-        name: 'Map Hack Vision', 
-        img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', 
-        price: 2499, 
-        link: 'product2.html',
-        description: 'Полное видение карты'
+    {
+        id: 3,
+        name: "Dota 2 Map Hack Vision",
+        description: "Полная карта с видением противника, вардами и предупреждениями о гангах.",
+        price: 2499,
+        monthlyPrice: 249,
+        image: "https://ggcheats.shop/img/cheats/ico/melonity.png",
+        link: "product2.html",
+        rating: 4.7,
+        reviews: 87
     },
-    { 
-        name: 'Script Pack Premium', 
-        img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', 
-        price: 3499, 
-        link: 'product3.html',
-        description: '400+ скриптов для героев'
+    {
+        id: 4,
+        name: "Dota 2 Script Pack Premium",
+        description: "Набор скриптов для всех героев с автоматизацией комбо и умных способностей.",
+        price: 3499,
+        monthlyPrice: 349,
+        image: "https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026",
+        link: "product3.html",
+        rating: 4.9,
+        reviews: 156
     }
 ];
 
-if (document.getElementById('popular-products')) {
-    const container = document.getElementById('popular-products');
-    popularProducts.forEach((prod, index) => {
-        const card = document.createElement('div');
-        card.className = 'col-md-3';
-        card.setAttribute('data-aos', 'fade-up');
-        card.setAttribute('data-aos-delay', index * 100);
-        card.innerHTML = `
-            <div class="product-card">
-                <img src="${prod.img}" class="product-img" alt="${prod.name}" loading="lazy">
-                <div class="product-body">
-                    <h5 class="text-purple">${prod.name}</h5>
-                    <p class="text-muted small">${prod.description}</p>
-                    <p class="text-purple fw-bold fs-4">${prod.price} ₽</p>
-                    <a href="${prod.link}" class="btn-neon w-100 text-center" style="padding: 8px;">Подробнее</a>
-                </div>
-            </div>
+// Корзина
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Обновление счетчика корзины
+function updateCartCount() {
+    const cartCount = document.getElementById('cartCount');
+    if (cartCount) {
+        cartCount.textContent = cart.length;
+        
+        // Анимация при изменении
+        cartCount.classList.add('animate__animated', 'animate__pulse');
+        setTimeout(() => {
+            cartCount.classList.remove('animate__animated', 'animate__pulse');
+        }, 500);
+    }
+}
+
+// Добавление в корзину
+function addToCart(product) {
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    
+    // Показываем уведомление
+    showNotification(`Товар "${product.name}" добавлен в корзину`, 'success');
+    
+    // Обновляем отображение корзины, если модальное окно открыто
+    if (document.getElementById('cartModal').classList.contains('show')) {
+        displayCartItems();
+    }
+}
+
+// Удаление из корзины
+function removeFromCart(index) {
+    const removed = cart[index];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    displayCartItems();
+    showNotification(`Товар "${removed.name}" удален из корзины`, 'info');
+}
+
+// Отображение товаров в корзине
+function displayCartItems() {
+    const cartItems = document.getElementById('cartItems');
+    if (!cartItems) return;
+    
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="text-center text-muted">Корзина пуста</p>';
+        return;
+    }
+    
+    let total = 0;
+    let html = '<div class="table-responsive"><table class="table table-dark"><thead><tr><th>Товар</th><th>Цена</th><th>Действие</th></tr></thead><tbody>';
+    
+    cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+            <tr>
+                <td>${item.name}</td>
+                <td>${item.price.toLocaleString()} ₽</td>
+                <td><button class="btn btn-sm btn-danger remove-item" data-index="${index}"><i class="bi bi-trash"></i></button></td>
+            </tr>
         `;
-        container.appendChild(card);
+    });
+    
+    html += `<tr class="table-active"><td colspan="2"><strong>Итого:</strong></td><td><strong>${total.toLocaleString()} ₽</strong></td></tr>`;
+    html += '</tbody></table></div>';
+    
+    cartItems.innerHTML = html;
+    
+    // Добавляем обработчики для кнопок удаления
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = e.currentTarget.dataset.index;
+            removeFromCart(index);
+        });
     });
 }
 
-// ========== КАТАЛОГ ==========
-const allProducts = [
-    { name: 'ESP Hack Ultimate', type: 'esp',
+// Показ уведомлений
+function showNotification(message, type = 'info') {
+    // Создаем элемент уведомления
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type === 'success' ? 'success' : type === 'info' ? 'info' : 'danger'} position-fixed top-0 end-0 m-3 animate__animated animate__fadeInRight`;
+    notification.style.zIndex = '9999';
+    notification.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="bi ${type === 'success' ? 'bi-check-circle-fill' : type === 'info' ? 'bi-info-circle-fill' : 'bi-exclamation-triangle-fill'} me-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Удаляем через 3 секунды
+    setTimeout(() => {
+        notification.classList.remove('animate__fadeInRight');
+        notification.classList.add('animate__fadeOutRight');
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}
+
+// Загрузка популярных товаров на главную
+function loadPopularProducts() {
+    const popularContainer = document.getElementById('popular-products');
+    if (!popularContainer) return;
+    
+    // Берем первые 3 товара
+    const popularProducts = products.slice(0, 3);
+    
+    popularProducts.forEach((product, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-md-4';
+        col.setAttribute('data-aos', 'fade-up');
+        col.setAttribute('data-aos-delay', (index + 1) * 100);
+        
+        col.innerHTML = `
+            <div class="product-card hvr-grow-shadow">
+                <div class="product-image-wrapper">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="text-muted small">${product.description.substring(0, 80)}...</p>
+                    <div class="product-rating mb-2">
+                        ${generateStars(product.rating)}
+                        <span class="ms-2 small">(${product.reviews})</span>
+                    </div>
+                    <div class="product-price">${product.price.toLocaleString()} ₽/год</div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="${product.link}" class="btn btn-outline-purple btn-sm">Подробнее</a>
+                        <button class="btn btn-purple btn-sm add-to-cart-mini" data-product='${JSON.stringify({id: product.id, name: product.name, price: product.price})}'>
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        popularContainer.appendChild(col);
+    });
+    
+    // Добавляем обработчики для мини-кнопок добавления
+    document.querySelectorAll('.add-to-cart-mini').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productData = JSON.parse(e.currentTarget.dataset.product);
+            addToCart(productData);
+        });
+    });
+}
+
+// Загрузка каталога товаров
+function loadCatalogProducts() {
+    const catalogContainer = document.getElementById('catalog-products');
+    if (!catalogContainer) return;
+    
+    products.forEach((product, index) => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6 col-lg-4 col-xl-3';
+        col.setAttribute('data-aos', 'fade-up');
+        col.setAttribute('data-aos-delay', (index % 4) * 50);
+        
+        col.innerHTML = `
+            <div class="product-card hvr-grow-shadow">
+                <div class="product-image-wrapper">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="text-muted small">${product.description.substring(0, 60)}...</p>
+                    <div class="product-rating mb-2">
+                        ${generateStars(product.rating)}
+                        <span class="ms-2 small">(${product.reviews})</span>
+                    </div>
+                    <div class="product-price">${product.price.toLocaleString()} ₽/год</div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="${product.link}" class="btn btn-outline-purple btn-sm">Подробнее</a>
+                        <button class="btn btn-purple btn-sm add-to-cart-mini" data-product='${JSON.stringify({id: product.id, name: product.name, price: product.price})}'>
+                            <i class="bi bi-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        catalogContainer.appendChild(col);
+    });
+    
+    // Добавляем обработчики для мини-кнопок добавления
+    document.querySelectorAll('.add-to-cart-mini').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productData = JSON.parse(e.currentTarget.dataset.product);
+            addToCart(productData);
+        });
+    });
+}
+
+// Генерация звезд рейтинга
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
+    let stars = '';
+    
+    for (let i = 0; i < fullStars; i++) {
+        stars += '<i class="bi bi-star-fill text-warning"></i>';
+    }
+    
+    if (halfStar) {
+        stars += '<i class="bi bi-star-half text-warning"></i>';
+    }
+    
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '<i class="bi bi-star text-warning"></i>';
+    }
+    
+    return stars;
+}
+
+// Поиск товаров
+function searchProducts() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            const title = card.querySelector('.product-title').textContent.toLowerCase();
+            if (title.includes(query)) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 50);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
+}
+
+// Анимация счетчиков статистики
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let count = 0;
+        const updateCounter = () => {
+            const increment = target / 100;
+            if (count < target) {
+                count += increment;
+                counter.innerText = Math.ceil(count);
+                setTimeout(updateCounter, 20);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        
+        // Используем Waypoints для запуска анимации при появлении
+        if (typeof Waypoint !== 'undefined') {
+            new Waypoint({
+                element: counter,
+                handler: function() {
+                    updateCounter();
+                    this.destroy();
+                },
+                offset: '80%'
+            });
+        } else {
+            // Fallback
+            updateCounter();
+        }
+    });
+}
+
+// Обработка форм
+function handleContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Здесь можно отправить данные на сервер
+        showNotification('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+        contactForm.reset();
+    });
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    // Обновляем счетчик корзины
+    updateCartCount();
+    
+    // Загружаем товары
+    loadPopularProducts();
+    loadCatalogProducts();
+    
+    // Анимируем счетчики
+    animateCounters();
+    
+    // Обработка формы контактов
+    handleContactForm();
+    
+    // Поиск товаров
+    searchProducts();
+    
+    // Кнопка корзины
+    const cartBtn = document.getElementById('cartBtn');
+    if (cartBtn) {
+        cartBtn.addEventListener('click', () => {
+            const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+            displayCartItems();
+            cartModal.show();
+        });
+    }
+    
+    // Кнопка оформления заказа
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Корзина пуста!', 'info');
+                return;
+            }
+            
+            showNotification('Заказ оформлен! Спасибо за покупку.', 'success');
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+            cartModal.hide();
+        });
+    }
+    
+    // Обработчики для кнопок на страницах товаров
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productName = e.currentTarget.dataset.product;
+            const productPrice = parseInt(e.currentTarget.dataset.price);
+            addToCart({name: productName, price: productPrice});
+        });
+    });
+    
+    document.querySelectorAll('.add-to-cart-monthly').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productName = e.currentTarget.dataset.product;
+            const productPrice = parseInt(e.currentTarget.dataset.price);
+            addToCart({name: `${productName} (месяц)`, price: productPrice});
+        });
+    });
+    
+    document.querySelectorAll('.add-to-cart-trial').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productName = e.currentTarget.dataset.product;
+            const productPrice = parseInt(e.currentTarget.dataset.price);
+            addToCart({name: `${productName} (пробная)`, price: productPrice});
+        });
+    });
+    
+    // Добавляем параллакс эффект для фона
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.parallax-section');
+        if (parallax) {
+            parallax.style.backgroundPositionY = -(scrolled * 0.3) + 'px';
+        }
+    });
+    
+    // Добавляем класс для анимации при скролле
+    window.addEventListener('scroll', () => {
+        const elements = document.querySelectorAll('.feature-card, .product-card, .price-card');
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+            if (isVisible) {
+                el.classList.add('in-view');
+            }
+        });
+    });
+});
+
+// Обработка ошибок загрузки изображений
+document.addEventListener('error', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.target.src = 'https://via.placeholder.com/400x300/1a1a1a/8B00FF?text=Image+Not+Found';
+    }
+}, true);
