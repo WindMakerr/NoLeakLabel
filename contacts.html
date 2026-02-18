@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог - Suspender</title>
+    <title>Контакты - Suspender</title>
     
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,58 +11,280 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Дополнительные стили для каталога */
-        .filter-card {
-            background: rgba(0,0,0,0.8);
-            border: 1px solid var(--neon-purple);
-            border-radius: 20px;
-            padding: 20px;
-            position: sticky;
-            top: 100px;
-        }
-        
-        .catalog-header {
-            background: linear-gradient(45deg, rgba(139,0,255,0.1), rgba(0,255,255,0.1));
-            padding: 60px 0 30px;
+        /* Специфичные стили для страницы контактов */
+        .contacts-header {
+            background: linear-gradient(135deg, rgba(139,0,255,0.2), rgba(0,255,255,0.2));
+            padding: 100px 0 50px;
             margin-top: 56px;
-            border-bottom: 1px solid var(--neon-purple);
+            border-bottom: 2px solid var(--neon-purple);
+            position: relative;
+            overflow: hidden;
         }
         
-        .price-value {
-            color: var(--neon-purple);
-            font-weight: bold;
-            font-size: 1.2rem;
+        .contacts-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139,0,255,0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
         }
         
-        .form-range::-webkit-slider-thumb {
-            background: var(--neon-purple);
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
-        .form-range::-moz-range-thumb {
-            background: var(--neon-purple);
+        .contact-card {
+            background: rgba(20, 24, 28, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 0, 255, 0.3);
+            border-radius: 30px;
+            padding: 40px 30px;
+            transition: all 0.4s;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         
-        .active-filter {
-            background: var(--neon-purple) !important;
-            color: #fff !important;
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
         }
         
-        .sort-buttons .btn {
-            margin: 0 5px;
+        .contact-card:hover::before {
+            left: 100%;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-15px);
             border-color: var(--neon-purple);
-            color: var(--neon-purple);
+            box-shadow: 0 30px 60px rgba(139, 0, 255, 0.3);
         }
         
-        .sort-buttons .btn:hover,
-        .sort-buttons .btn.active {
-            background: var(--neon-purple);
-            color: #fff;
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 0 30px var(--neon-purple);
+            animation: iconPulse 3s infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--neon-purple); }
+            50% { transform: scale(1.1); box-shadow: 0 0 50px var(--neon-pink); }
+        }
+        
+        .contact-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .contact-link:hover {
+            color: var(--neon-purple);
+            transform: translateX(10px);
+            background: rgba(139,0,255,0.1);
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-item {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s;
+            margin: 0 auto;
+            border: 1px solid rgba(139,0,255,0.3);
+        }
+        
+        .social-item:hover {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            transform: rotate(360deg) scale(1.1);
+            border-color: transparent;
+            box-shadow: 0 0 30px var(--neon-purple);
+        }
+        
+        .map-container {
+            border-radius: 30px;
+            overflow: hidden;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 50px rgba(139,0,255,0.3);
+            height: 400px;
+            position: relative;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            filter: grayscale(100%) invert(90%) hue-rotate(250deg);
+            transition: filter 0.5s;
+        }
+        
+        .map-container:hover iframe {
+            filter: grayscale(0%) invert(0%) hue-rotate(0);
+        }
+        
+        .floating-element {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--neon-purple), transparent);
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+            animation: float 10s infinite alternate;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, -50px) scale(1.5); }
+        }
+        
+        .faq-item {
+            background: rgba(20, 24, 28, 0.6);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 0, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--neon-purple);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(139,0,255,0.2);
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(139,0,255,0.3);
+            color: #ccc;
+            line-height: 1.8;
+        }
+        
+        .counter-box {
+            background: rgba(139,0,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--neon-purple);
+            transition: all 0.3s;
+        }
+        
+        .counter-box:hover {
+            transform: scale(1.05);
+            background: rgba(139,0,255,0.2);
+            box-shadow: 0 0 40px var(--neon-purple);
+        }
+        
+        .counter-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .typing-demo {
+            border-right: 3px solid var(--neon-purple);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40) infinite, blink 1s step-end infinite;
+        }
+        
+        @keyframes typing {
+            0%, 100% { width: 0; }
+            50% { width: 100%; }
+        }
+        
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-purple); }
+        }
+        
+        .message-bubble {
+            position: relative;
+            background: linear-gradient(135deg, rgba(139,0,255,0.2), rgba(0,255,255,0.2));
+            border-radius: 30px 30px 30px 0;
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: bubbleAppear 0.5s ease;
+        }
+        
+        @keyframes bubbleAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background: inherit;
+            clip-path: polygon(0 0, 100% 0, 0 100%);
         }
     </style>
 </head>
@@ -83,10 +305,10 @@
                         <a class="nav-link" href="index.html">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="catalog.html">Каталог</a>
+                        <a class="nav-link" href="catalog.html">Каталог</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Контакты</a>
+                        <a class="nav-link active" href="contacts.html">Контакты</a>
                     </li>
                 </ul>
                 <button class="btn btn-outline-light position-relative ms-3" id="cartBtn">
@@ -100,14 +322,33 @@
     <!-- Анимированный фон -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Заголовок каталога -->
-    <div class="catalog-header">
+    <!-- Плавающие элементы -->
+    <div class="floating-element" style="top: 10%; left: 5%;"></div>
+    <div class="floating-element" style="bottom: 20%; right: 10%; background: radial-gradient(circle, var(--neon-cyan), transparent); animation-delay: -5s;"></div>
+
+    <!-- Заголовок страницы контактов -->
+    <div class="contacts-header">
         <div class="container">
-            <h1 class="neon-text" data-aos="fade-right">Каталог товаров</h1>
-            <nav aria-label="breadcrumb" data-aos="fade-left">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-2 fw-bold neon-text mb-4">Свяжитесь с нами</h1>
+                    <p class="lead mb-4 typing-demo" style="font-size: 1.5rem;">Мы всегда на связи 24/7/365</p>
+                    <div class="d-flex gap-3">
+                        <span class="badge bg-purple">Online чат</span>
+                        <span class="badge bg-gradient-purple">Быстрый ответ</span>
+                        <span class="badge" style="background: var(--neon-cyan);">Техподдержка</span>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="text-center">
+                        <i class="bi bi-headset" style="font-size: 12rem; color: var(--neon-purple); filter: drop-shadow(0 0 50px var(--neon-purple)); animation: float 6s infinite;"></i>
+                    </div>
+                </div>
+            </div>
+            <nav aria-label="breadcrumb" class="mt-4" data-aos="fade-up">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html" class="text-purple">Главная</a></li>
-                    <li class="breadcrumb-item active text-light" aria-current="page">Каталог</li>
+                    <li class="breadcrumb-item active text-light" aria-current="page">Контакты</li>
                 </ol>
             </nav>
         </div>
@@ -115,143 +356,331 @@
 
     <!-- Основной контент -->
     <div class="container py-5">
-        <div class="row">
-            <!-- Фильтры (левая колонка) -->
-            <div class="col-lg-3 mb-4" data-aos="fade-right">
-                <div class="filter-card">
-                    <h4 class="text-purple mb-4">
-                        <i class="bi bi-funnel"></i> Фильтры
-                    </h4>
-                    
-                    <!-- Цена -->
-                    <div class="mb-4">
-                        <label class="form-label text-purple">Цена (₽/год)</label>
-                        <input type="range" class="form-range" min="0" max="4000" step="100" id="priceRange" value="4000">
-                        <div class="d-flex justify-content-between">
-                            <span class="price-value">0 ₽</span>
-                            <span class="price-value" id="currentPrice">4000 ₽</span>
-                        </div>
+        <!-- Контактная информация -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="bi bi-telegram"></i>
                     </div>
-                    
-                    <!-- Тип чипа -->
-                    <div class="mb-4">
-                        <label class="form-label text-purple">Тип чипа</label>
-                        <select class="form-select bg-black text-light border-purple" id="typeFilter">
-                            <option value="all">Все типы</option>
-                            <option value="esp">ESP (Видение)</option>
-                            <option value="map">Map Hack (Карта)</option>
-                            <option value="script">Скрипты</option>
-                            <option value="lasthit">Auto Last Hit</option>
-                        </select>
+                    <h3 class="text-center text-purple mb-3">Telegram</h3>
+                    <p class="text-center text-muted mb-4">Быстрая связь с поддержкой</p>
+                    <div class="text-center">
+                        <a href="https://t.me/suspender_support" class="contact-link" target="_blank">
+                            <i class="bi bi-send me-2"></i> @suspender_support
+                        </a>
                     </div>
-                    
-                    <!-- Сортировка -->
-                    <div class="mb-4">
-                        <label class="form-label text-purple">Сортировка</label>
-                        <div class="sort-buttons">
-                            <button class="btn btn-sm btn-outline-purple active" data-sort="default">
-                                <i class="bi bi-arrow-down-up"></i>
-                            </button>
-                            <button class="btn btn-sm btn-outline-purple" data-sort="price-asc">
-                                <i class="bi bi-arrow-up"></i> Цена
-                            </button>
-                            <button class="btn btn-sm btn-outline-purple" data-sort="price-desc">
-                                <i class="bi bi-arrow-down"></i> Цена
-                            </button>
-                        </div>
+                    <div class="text-center mt-3">
+                        <small class="text-cyan">⏱️ Ответ: 1-2 минуты</small>
                     </div>
-                    
-                    <!-- Дополнительные фильтры -->
-                    <div class="mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="inStock" checked>
-                            <label class="form-check-label" for="inStock">
-                                Только в наличии
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="sale">
-                            <label class="form-check-label" for="sale">
-                                Товары со скидкой
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="new">
-                            <label class="form-check-label" for="new">
-                                Новинки
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <!-- Кнопки -->
-                    <button class="btn-neon w-100 mb-2" id="applyFilter">
-                        <i class="bi bi-search"></i> Применить фильтры
-                    </button>
-                    <button class="btn-neon btn-neon-outline w-100" id="resetFilter">
-                        <i class="bi bi-arrow-counterclockwise"></i> Сбросить
-                    </button>
                 </div>
             </div>
             
-            <!-- Товары (правая колонка) -->
-            <div class="col-lg-9">
-                <!-- Результаты поиска -->
-                <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-left">
-                    <div>
-                        <span class="text-purple" id="resultsCount">4</span> товаров найдено
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="bi bi-discord"></i>
                     </div>
-                    <div class="view-options">
-                        <button class="btn btn-sm btn-outline-purple active" data-view="grid">
-                            <i class="bi bi-grid-3x3-gap-fill"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-purple" data-view="list">
-                            <i class="bi bi-list-ul"></i>
-                        </button>
+                    <h3 class="text-center text-purple mb-3">Discord</h3>
+                    <p class="text-center text-muted mb-4">Наш сервер с комьюнити</p>
+                    <div class="text-center">
+                        <a href="https://discord.gg/suspender" class="contact-link" target="_blank">
+                            <i class="bi bi-people me-2"></i> discord.gg/suspender
+                        </a>
+                    </div>
+                    <div class="text-center mt-3">
+                        <small class="text-cyan">👥 5,000+ участников</small>
                     </div>
                 </div>
-                
-                <!-- Сетка товаров -->
-                <div class="row g-4" id="catalog-items"></div>
-                
-                <!-- Пагинация -->
-                <nav class="mt-5" data-aos="fade-up">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link bg-black text-purple border-purple" href="#">
-                                <i class="bi bi-chevron-left"></i>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link bg-purple border-purple" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-black text-purple border-purple" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-black text-purple border-purple" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-black text-purple border-purple" href="#">
-                                <i class="bi bi-chevron-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            </div>
+            
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <h3 class="text-center text-purple mb-3">Email</h3>
+                    <p class="text-center text-muted mb-4">Для деловых предложений</p>
+                    <div class="text-center">
+                        <a href="mailto:support@suspender.ru" class="contact-link">
+                            <i class="bi bi-envelope-fill me-2"></i> support@suspender.ru
+                        </a>
+                    </div>
+                    <div class="text-center mt-3">
+                        <small class="text-cyan">📧 Ответ: 24 часа</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Статистика -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3" data-aos="flip-left">
+                <div class="counter-box">
+                    <i class="bi bi-people fs-1 text-purple"></i>
+                    <div class="counter-number">5000+</div>
+                    <p class="text-muted">Клиентов</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="flip-left" data-aos-delay="100">
+                <div class="counter-box">
+                    <i class="bi bi-chat-dots fs-1 text-purple"></i>
+                    <div class="counter-number">24/7</div>
+                    <p class="text-muted">Поддержка</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="flip-left" data-aos-delay="200">
+                <div class="counter-box">
+                    <i class="bi bi-clock-history fs-1 text-purple"></i>
+                    <div class="counter-number">5 мин</div>
+                    <p class="text-muted">Средний ответ</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="flip-left" data-aos-delay="300">
+                <div class="counter-box">
+                    <i class="bi bi-star fs-1 text-purple"></i>
+                    <div class="counter-number">4.9</div>
+                    <p class="text-muted">Рейтинг</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Карта и форма -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h2 class="neon-text mb-4">
+                    <i class="bi bi-geo-alt"></i> Мы на карте
+                </h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373524249775!2d37.6156!3d55.7522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d50b6a6b8c!2z0JzQvtGB0LrQvtCy0YHQutC40Lkg0JrRgNC10LzQu9GM!5e0!3m2!1sru!2sru!4v1700000000000!5m2!1sru!2sru" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+                <div class="mt-4 p-4 bg-black rounded-4 border border-purple">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-building fs-1 text-purple me-3"></i>
+                        <div>
+                            <h5 class="text-purple">Главный офис</h5>
+                            <p class="mb-0">г. Москва, ул. Киберпространственная, д. 42, офис 404</p>
+                            <small class="text-muted">Работаем онлайн 24/7, офис: пн-пт 10:00-19:00</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-left">
+                <h2 class="neon-text mb-4">
+                    <i class="bi bi-chat"></i> Напишите нам
+                </h2>
+                <div class="contact-card p-4">
+                    <form id="contactForm">
+                        <div class="mb-4">
+                            <label class="form-label text-purple">Ваше имя</label>
+                            <input type="text" class="form-control" placeholder="Введите имя" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-purple">Email</label>
+                            <input type="email" class="form-control" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-purple">Тема</label>
+                            <select class="form-select">
+                                <option value="support">Техническая поддержка</option>
+                                <option value="sales">Вопросы по покупке</option>
+                                <option value="partnership">Сотрудничество</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-purple">Сообщение</label>
+                            <textarea class="form-control" rows="5" placeholder="Опишите ваш вопрос..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-neon w-100">
+                            <i class="bi bi-send me-2"></i> Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="text-center neon-text mb-5" data-aos="fade-down">
+                    <i class="bi bi-share"></i> Мы в соцсетях
+                </h2>
+                <div class="social-grid" style="grid-template-columns: repeat(6, 1fr);">
+                    <a href="#" class="social-item" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="bi bi-telegram"></i>
+                    </a>
+                    <a href="#" class="social-item" data-aos="zoom-in" data-aos-delay="150">
+                        <i class="bi bi-discord"></i>
+                    </a>
+                    <a href="#" class="social-item" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="#" class="social-item" data-aos="zoom-in" data-aos-delay="250">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="#" class="social-item" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" class="social-item" data-aos="zoom-in" data-aos-delay="350">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center neon-text mb-5" data-aos="fade-down">
+                    <i class="bi bi-question-circle"></i> Часто задаваемые вопросы
+                </h2>
+            </div>
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ Как быстро отвечает поддержка?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Мы отвечаем в течение 1-5 минут в Telegram и Discord. На email ответ может занять до 24 часов в рабочие дни.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ Есть ли гарантия возврата?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Да, мы предоставляем 30-дневную гарантию возврата средств, если товар вам не подошел или возникли проблемы.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ Работаете ли вы с криптовалютой?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Да, мы принимаем Bitcoin, Ethereum, USDT и другие популярные криптовалюты через наш платежный шлюз.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ Как получить пробную версию?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Пробные версии доступны в каталоге. Выберите товар с пометкой "Trial" и активируйте пробный период.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ Обновляете ли вы читы после патчей?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Да, мы обновляем все продукты в течение 24 часов после выхода патча Dota 2. Вы получаете уведомление в боте.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>❓ Есть ли скидки для постоянных?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer" style="display: none;">
+                        Да, для постоянных клиентов у нас накопительная система скидок до 30% и специальные предложения в Telegram.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Живой чат демо -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="contact-card p-4" data-aos="zoom-in">
+                    <h3 class="text-center text-purple mb-4">
+                        <i class="bi bi-chat-dots-fill"></i> Пример живого чата
+                    </h3>
+                    <div class="chat-demo" style="max-height: 300px; overflow-y: auto;">
+                        <div class="message-bubble" style="max-width: 80%;">
+                            <strong class="text-purple">Оператор Алексей:</strong>
+                            <p class="mb-0">Здравствуйте! Чем я могу вам помочь?</p>
+                            <small class="text-muted">10:30</small>
+                        </div>
+                        <div class="message-bubble" style="max-width: 80%; margin-left: auto; background: linear-gradient(135deg, rgba(0,255,255,0.2), rgba(139,0,255,0.2)); border-radius: 30px 30px 0 30px;">
+                            <strong class="text-cyan">Вы:</strong>
+                            <p class="mb-0">Есть вопрос по ESP читу</p>
+                            <small class="text-muted">10:31</small>
+                        </div>
+                        <div class="message-bubble" style="max-width: 80%;">
+                            <strong class="text-purple">Оператор Алексей:</strong>
+                            <p class="mb-0">Конечно, я слушаю. Что именно вас интересует?</p>
+                            <small class="text-muted">10:31</small>
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex gap-2">
+                        <input type="text" class="form-control" placeholder="Напишите сообщение..." disabled>
+                        <button class="btn-neon" disabled><i class="bi bi-send"></i></button>
+                    </div>
+                    <p class="text-muted text-center mt-3">
+                        <i class="bi bi-info-circle"></i> Это демо-версия. Для реального чата напишите в Telegram/Discord
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Футер -->
-    <footer class="py-4" style="background: rgba(0,0,0,0.9); border-top: 1px solid rgba(139,0,255,0.3);">
-        <div class="container text-center">
-            <p class="mb-0">
-                <i class="bi bi-c-circle text-purple"></i> 
-                2025 Suspender. Все права защищены.
-            </p>
-            <div class="mt-2">
-                <a href="index.html" class="text-purple me-3">Главная</a>
-                <a href="catalog.html" class="text-purple me-3">Каталог</a>
-                <a href="contacts.html" class="text-purple">Контакты</a>
+    <footer class="py-5" style="background: rgba(0,0,0,0.95); border-top: 2px solid rgba(139,0,255,0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="neon-text mb-3">Suspender</h4>
+                    <p>Продвинутые читы для Dota 2 с максимальной защитой и поддержкой 24/7.</p>
+                    <div class="d-flex gap-2">
+                        <span class="badge bg-purple">#1 в СНГ</span>
+                        <span class="badge bg-gradient-purple">5 лет на рынке</span>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="text-purple">Навигация</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none">Главная</a></li>
+                        <li><a href="catalog.html" class="text-light text-decoration-none">Каталог</a></li>
+                        <li><a href="contacts.html" class="text-light text-decoration-none">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-purple">Контакты</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-telegram me-2 text-purple"></i> @suspender_support</li>
+                        <li><i class="bi bi-discord me-2 text-purple"></i> discord.gg/suspender</li>
+                        <li><i class="bi bi-envelope me-2 text-purple"></i> support@suspender.ru</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-purple">Подписка</h5>
+                    <p>Будьте в курсе новостей и скидок</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Ваш email">
+                        <button class="btn btn-purple"><i class="bi bi-send"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-purple opacity-25">
+            <div class="text-center">
+                <p class="mb-0">
+                    <i class="bi bi-c-circle text-purple"></i> 2025 Suspender. Все права защищены.
+                </p>
+                <p class="mb-0 text-muted small">
+                    Сделано с <i class="bi bi-heart-fill text-danger"></i> для Dota 2 комьюнити
+                </p>
             </div>
         </div>
     </footer>
@@ -284,5 +713,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        // Функция для FAQ
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+                icon.className = 'bi bi-chevron-up';
+            } else {
+                answer.style.display = 'none';
+                icon.className = 'bi bi-chevron-down';
+            }
+        }
+
+        // Валидация формы
+        document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Отправка...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                showNotification('✅ Сообщение отправлено! Мы ответим в ближайшее время.', 'success');
+                e.target.reset();
+                btn.innerHTML = '<i class="bi bi-send me-2"></i> Отправить сообщение';
+                btn.disabled = false;
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
