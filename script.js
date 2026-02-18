@@ -1,12 +1,11 @@
-// Инициализация AOS с улучшенными настройками
+// Инициализация AOS
 AOS.init({
     duration: 1000,
     once: false,
     mirror: true,
     offset: 120,
     easing: 'ease-out-cubic',
-    delay: 100,
-    anchorPlacement: 'top-bottom'
+    delay: 100
 });
 
 // ========== КОРЗИНА ==========
@@ -111,7 +110,7 @@ document.getElementById('cartBtn')?.addEventListener('click', () => {
     setTimeout(() => btn.style.transform = 'scale(1)', 200);
 });
 
-// Обработчик добавления в корзину на страницах товаров
+// Обработчик добавления в корзину
 document.querySelectorAll('#addToCartBtn').forEach(btn => {
     btn.addEventListener('click', function() {
         const selected = document.querySelector('input[name="productOption"]:checked');
@@ -137,7 +136,7 @@ document.getElementById('checkoutBtn')?.addEventListener('click', () => {
         return;
     }
     
-    showNotification('✅ Заказ оформлен! С вами свяжутся в ближайшее время.', 'success');
+    showNotification('✅ Заказ оформлен! С вами свяжутся.', 'success');
     
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -147,7 +146,7 @@ document.getElementById('checkoutBtn')?.addEventListener('click', () => {
     if (modal) modal.hide();
 });
 
-// ========== АНИМАЦИЯ ЧАСТИЦ THREE.JS ==========
+// ========== АНИМАЦИЯ ЧАСТИЦ ==========
 function initParticles() {
     const canvas = document.getElementById('particle-canvas');
     if (!canvas || !window.THREE) return;
@@ -164,7 +163,6 @@ function initParticles() {
 
     const color1 = new THREE.Color(0x8B00FF);
     const color2 = new THREE.Color(0x00FFFF);
-    const color3 = new THREE.Color(0xFF36B0);
 
     for (let i = 0; i < particlesCount; i++) {
         const radius = 10;
@@ -189,8 +187,7 @@ function initParticles() {
         size: 0.08,
         vertexColors: true,
         transparent: true,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false
+        blending: THREE.AdditiveBlending
     });
 
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -198,14 +195,12 @@ function initParticles() {
 
     camera.position.z = 18;
 
-    function animateParticles() {
-        requestAnimationFrame(animateParticles);
+    function animate() {
+        requestAnimationFrame(animate);
         particlesMesh.rotation.y += 0.0003;
-        particlesMesh.rotation.x += 0.0002;
-        particlesMesh.rotation.z += 0.0001;
         renderer.render(scene, camera);
     }
-    animateParticles();
+    animate();
 
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -214,63 +209,28 @@ function initParticles() {
     });
 }
 
-// ========== ПАРАЛЛАКС ЭФФЕКТ ==========
+// ========== ПАРАЛЛАКС ==========
 document.addEventListener('mousemove', (e) => {
-    const mouseX = e.clientX / window.innerWidth - 0.5;
-    const mouseY = e.clientY / window.innerHeight - 0.5;
-    
-    document.querySelectorAll('.parallax-bg').forEach(el => {
-        el.style.transform = `translate(${mouseX * 40}px, ${mouseY * 40}px)`;
-    });
-    
-    document.querySelectorAll('.card-3d, .product-card, .contact-card').forEach(card => {
+    document.querySelectorAll('.card-3d, .product-card').forEach(card => {
         const rect = card.getBoundingClientRect();
         const cardCenterX = rect.left + rect.width / 2;
         const cardCenterY = rect.top + rect.height / 2;
         const deltaX = (e.clientX - cardCenterX) / 25;
         const deltaY = (e.clientY - cardCenterY) / 25;
         
-        card.style.transform = `perspective(1000px) rotateY(${deltaX}deg) rotateX(${-deltaY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.transform = `perspective(1000px) rotateY(${deltaX}deg) rotateX(${-deltaY}deg)`;
     });
 });
 
-document.addEventListener('mouseleave', () => {
-    document.querySelectorAll('.card-3d, .product-card, .contact-card').forEach(card => {
-        card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)';
-    });
-});
-
-// ========== АНИМАЦИЯ СКРОЛЛА ==========
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    
-    document.querySelectorAll('.parallax-section').forEach(el => {
-        const speed = 0.3;
-        el.style.backgroundPositionY = `${scrolled * speed}px`;
-    });
-    
-    document.querySelectorAll('.fade-on-scroll').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const opacity = Math.min(1, (window.innerHeight - rect.top) / 300);
-        el.style.opacity = opacity;
-    });
-    
-    document.querySelectorAll('.parallax-text').forEach(el => {
-        const speed = 0.5;
-        el.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
-
-// ========== ДИНАМИЧЕСКИЙ СЧЕТЧИК ==========
-function animateCounter() {
+// ========== АНИМАЦИЯ СЧЕТЧИКОВ ==========
+function animateCounters() {
     document.querySelectorAll('.counter').forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000;
-        const step = target / (duration / 16);
         let current = 0;
+        const increment = target / 50;
         
         const updateCounter = () => {
-            current += step;
+            current += increment;
             if (current < target) {
                 counter.textContent = Math.floor(current) + '+';
                 requestAnimationFrame(updateCounter);
@@ -286,22 +246,11 @@ function animateCounter() {
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        });
         
         observer.observe(counter);
     });
 }
-
-// ========== АНИМАЦИЯ КНОПОК ==========
-document.querySelectorAll('.btn-neon, .btn-purple').forEach(btn => {
-    btn.addEventListener('mouseenter', function() {
-        this.style.animation = 'btnPulse 1s infinite';
-    });
-    
-    btn.addEventListener('mouseleave', function() {
-        this.style.animation = 'btnPulse 3s infinite';
-    });
-});
 
 // ========== ТОВАРЫ ДЛЯ ГЛАВНОЙ ==========
 const popularProducts = [
@@ -310,28 +259,28 @@ const popularProducts = [
         img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', 
         price: 2999, 
         link: 'product.html',
-        description: 'Полный ESP с отображением врагов через стены'
+        description: 'Полный ESP с отображением врагов'
     },
     { 
         name: 'Auto Last Hit Pro', 
         img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', 
         price: 1999, 
         link: 'product1.html',
-        description: 'Автоматический ласт хит с точностью 99.8%'
+        description: 'Автоматический ласт хит 99.8%'
     },
     { 
         name: 'Map Hack Vision', 
         img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', 
         price: 2499, 
         link: 'product2.html',
-        description: 'Полное видение карты и вардов'
+        description: 'Полное видение карты'
     },
     { 
         name: 'Script Pack Premium', 
         img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', 
         price: 3499, 
         link: 'product3.html',
-        description: '400+ скриптов для всех героев'
+        description: '400+ скриптов для героев'
     }
 ];
 
@@ -357,259 +306,6 @@ if (document.getElementById('popular-products')) {
     });
 }
 
-// ========== КАТАЛОГ С ФИЛЬТРАЦИЕЙ ==========
+// ========== КАТАЛОГ ==========
 const allProducts = [
-    { name: 'ESP Hack Ultimate', type: 'esp', price: 2999, img: 'https://avatars.mds.yandex.net/i?id=48344677b610b8b0598228d64fb62806_sr-4821375-images-thumbs&n=13', link: 'product.html', description: 'Полный ESP' },
-    { name: 'Auto Last Hit Pro', type: 'lasthit', price: 1999, img: 'https://avatars.mds.yandex.net/i?id=ec731b6011cc2a56592a5e14aaa913af4c997c17-5232927-images-thumbs&n=13', link: 'product1.html', description: 'Авто ласт хит' },
-    { name: 'Map Hack Vision', type: 'map', price: 2499, img: 'https://ggcheats.shop/img/cheats/ico/melonity.png', link: 'product2.html', description: 'Map hack' },
-    { name: 'Script Pack Premium', type: 'script', price: 3499, img: 'https://yougame.biz/data/avatars/o/219/219827.jpg?1750491026', link: 'product3.html', description: 'Скрипты' }
-];
-
-function renderCatalog(filtered) {
-    const container = document.getElementById('catalog-items');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    document.getElementById('resultsCount').textContent = filtered.length;
-    
-    if (filtered.length === 0) {
-        container.innerHTML = '<div class="col-12 text-center"><p class="fs-3">Товары не найдены</p></div>';
-        return;
-    }
-    
-    filtered.forEach((prod, index) => {
-        const col = document.createElement('div');
-        col.className = 'col-md-6 col-lg-4';
-        col.setAttribute('data-aos', 'fade-up');
-        col.setAttribute('data-aos-delay', index * 50);
-        col.innerHTML = `
-            <div class="product-card">
-                <img src="${prod.img}" class="product-img" alt="${prod.name}" loading="lazy">
-                <div class="product-body">
-                    <h5 class="text-purple">${prod.name}</h5>
-                    <p class="text-muted small">${prod.description}</p>
-                    <p class="text-purple fw-bold fs-4">${prod.price} ₽</p>
-                    <a href="${prod.link}" class="btn-neon w-100 text-center" style="padding: 8px;">Подробнее</a>
-                </div>
-            </div>
-        `;
-        container.appendChild(col);
-    });
-}
-
-if (document.getElementById('catalog-items')) {
-    renderCatalog(allProducts);
-
-    document.getElementById('applyFilter')?.addEventListener('click', () => {
-        const priceMax = parseInt(document.getElementById('priceRange')?.value) || 4000;
-        const type = document.getElementById('typeFilter')?.value || 'all';
-        
-        const filtered = allProducts.filter(p => {
-            return p.price <= priceMax && (type === 'all' || p.type === type);
-        });
-        
-        renderCatalog(filtered);
-        
-        document.getElementById('currentPrice').textContent = priceMax + ' ₽';
-        
-        const btn = document.getElementById('applyFilter');
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => btn.style.transform = 'scale(1)', 200);
-    });
-
-    document.getElementById('resetFilter')?.addEventListener('click', () => {
-        document.getElementById('priceRange').value = 4000;
-        document.getElementById('currentPrice').textContent = '4000 ₽';
-        document.getElementById('typeFilter').value = 'all';
-        renderCatalog(allProducts);
-        
-        const btn = document.getElementById('resetFilter');
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => btn.style.transform = 'scale(1)', 200);
-    });
-
-    document.getElementById('priceRange')?.addEventListener('input', (e) => {
-        document.getElementById('currentPrice').textContent = e.target.value + ' ₽';
-    });
-}
-
-// ========== АНИМАЦИЯ ПОЛЗУНКА ==========
-const priceRange = document.getElementById('priceRange');
-if (priceRange) {
-    priceRange.addEventListener('mousemove', (e) => {
-        const val = (e.target.value / e.target.max) * 100;
-        e.target.style.background = `linear-gradient(90deg, var(--neon-purple) ${val}%, rgba(255,255,255,0.1) ${val}%)`;
-    });
-}
-
-// ========== ВАЛИДАЦИЯ ФОРМЫ КОНТАКТОВ ==========
-document.getElementById('contactForm')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Отправка...';
-    btn.disabled = true;
-    
-    setTimeout(() => {
-        showNotification('✅ Сообщение отправлено! Мы ответим в ближайшее время.', 'success');
-        e.target.reset();
-        btn.innerHTML = '<i class="bi bi-send me-2"></i> Отправить сообщение';
-        btn.disabled = false;
-    }, 1500);
-});
-
-// ========== FAQ ДЛЯ КОНТАКТОВ ==========
-window.toggleFaq = function(element) {
-    const answer = element.nextElementSibling;
-    const icon = element.querySelector('i');
-    
-    if (answer.style.display === 'none' || answer.style.display === '') {
-        answer.style.display = 'block';
-        answer.style.animation = 'fadeIn 0.5s';
-        icon.className = 'bi bi-chevron-up';
-    } else {
-        answer.style.animation = 'fadeOut 0.3s';
-        setTimeout(() => {
-            answer.style.display = 'none';
-        }, 250);
-        icon.className = 'bi bi-chevron-down';
-    }
-};
-
-// ========== ТИПИНГ АНИМАЦИЯ ДЛЯ ЗАГОЛОВКОВ ==========
-function initTypingAnimation() {
-    const typingElements = document.querySelectorAll('.typing-animation');
-    typingElements.forEach(el => {
-        const text = el.textContent;
-        el.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                el.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    typeWriter();
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-        
-        observer.observe(el);
-    });
-}
-
-// ========== ЗАПУСК ВСЕХ АНИМАЦИЙ ==========
-window.addEventListener('load', () => {
-    initParticles();
-    animateCounter();
-    initTypingAnimation();
-    
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 500);
-    
-    // Конфетти на главной
-    if (window.location.pathname.includes('index') || window.location.pathname === '/') {
-        setTimeout(() => {
-            if (typeof confetti !== 'undefined') {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#8B00FF', '#00FFFF', '#FF36B0']
-                });
-            }
-        }, 1000);
-    }
-});
-
-// ========== ДОБАВЛЕНИЕ НОВЫХ АНИМАЦИЙ ==========
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
-    
-    @keyframes glow {
-        0%, 100% { filter: drop-shadow(0 0 20px var(--neon-purple)); }
-        50% { filter: drop-shadow(0 0 40px var(--neon-pink)); }
-    }
-    
-    @keyframes rotateIn {
-        from {
-            transform: rotate(-180deg) scale(0);
-            opacity: 0;
-        }
-        to {
-            transform: rotate(0) scale(1);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes bounceIn {
-        0% {
-            transform: scale(0.3);
-            opacity: 0;
-        }
-        50% {
-            transform: scale(1.05);
-        }
-        70% {
-            transform: scale(0.9);
-        }
-        100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-    
-    .float-animation {
-        animation: float 4s ease-in-out infinite;
-    }
-    
-    .glow-animation {
-        animation: glow 3s ease-in-out infinite;
-    }
-    
-    .rotate-in {
-        animation: rotateIn 0.8s ease-out;
-    }
-    
-    .bounce-in {
-        animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-    
-    .fade-out {
-        animation: fadeOut 0.5s forwards;
-    }
-    
-    @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .hover-glow:hover {
-        filter: drop-shadow(0 0 30px var(--neon-purple));
-        transition: all 0.3s;
-    }
-`;
-document.head.appendChild(style);
+    { name: 'ESP Hack Ultimate', type: 'esp',
